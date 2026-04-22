@@ -20,6 +20,8 @@ public:
 
 	void ChangeNowTitle(TitleType title);
 
+	Title* Get0() { return this; }
+
 private:
 	//ここから
 
@@ -41,8 +43,8 @@ private:
 public:
 	static Title& GetInstance()
 	{
-		static Title Instance;
-		return Instance;
+		static Title GInstance;
+		return GInstance;
 	}
 };
 

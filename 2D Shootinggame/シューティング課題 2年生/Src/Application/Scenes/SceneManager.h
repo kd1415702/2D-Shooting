@@ -1,6 +1,5 @@
 #pragma once
 #include"SceneBase.h"
-#include"SceneManager.h"
 #include"../Info/Info.h"
 
 
@@ -13,8 +12,8 @@ class SceneManager
 {
 public:
 
-	SceneManager();
-	~SceneManager();
+	SceneManager() {};
+	~SceneManager() {};
 
 	void Init();
 	void Update();
@@ -29,7 +28,9 @@ public:
 private:
 
 	//現在のシーンを持たせる(SceneBaseを継承した子クラスのアドレスが入る)
-	SceneBase* m_NowScene;
+	SceneBase* m_NowScene = nullptr;
+
+	SceneType scene;
 
 	Title* m_Title;
 	

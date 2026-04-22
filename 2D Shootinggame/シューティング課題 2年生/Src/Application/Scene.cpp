@@ -1,24 +1,33 @@
 #include "main.h"
 #include "Scene.h"
+#include "Scenes/SceneManager.h"
 
 void Scene::Draw2D()
 {
-
+	m_SceneManager.Draw();
 }
 
 void Scene::Update()
 {
-	
+	m_SceneManager.Update();
 }
 
 void Scene::Init()
 {
+	/*if (m_SceneManager == nullptr)
+	{
+		m_SceneManager = new SceneManager();
+	}*/
 
+	//if (m_SceneManager != nullptr)
+	//{
+		m_SceneManager.Init();
+	
 }
 
 void Scene::Release()
 {
-
+	m_SceneManager.~SceneManager();
 }
 
 void Scene::ImGuiUpdate()

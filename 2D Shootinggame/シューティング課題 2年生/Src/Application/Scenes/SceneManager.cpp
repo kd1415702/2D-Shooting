@@ -7,10 +7,11 @@ void SceneManager::Init()
 	m_Title = new Title();
 
 
-	//===============
+		//===============
 
 
-
+   //オーナー(SceneManager)セット
+	//m_Title->SetOwner(this);
 
 
 	//音関係読み込み======
@@ -27,10 +28,14 @@ void SceneManager::Init()
 }
 
 void SceneManager::Update()
-{}
+{
+
+}
 
 void SceneManager::Draw()
-{}
+{
+	m_NowScene->Draw();
+}
 
 void SceneManager::ChangeScene(SceneType type)
 {

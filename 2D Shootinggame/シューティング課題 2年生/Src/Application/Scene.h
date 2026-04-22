@@ -1,4 +1,6 @@
 #pragma once
+#include"Scenes/SceneManager.h"
+
 
 class Scene
 {
@@ -20,6 +22,8 @@ public:
 	void ImGuiUpdate();
 
 private:
+
+	SceneManager m_SceneManager;
 
 	Scene() {}
 
