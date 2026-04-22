@@ -22,6 +22,6 @@ public:
 
 protected:
 
-	SceneManager* m_owner;
+	SceneManager* m_owner = nullptr;
 
 };
