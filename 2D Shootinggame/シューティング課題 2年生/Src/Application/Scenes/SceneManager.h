@@ -3,8 +3,9 @@
 #include"../Info/Info.h"
 
 
-//前方宣言
+//前方宣言(SceneManagerで使う各シーン)
 class Title;
+class Game;
 
 
 //各シーンの実態を管理するクラス
@@ -12,7 +13,7 @@ class SceneManager
 {
 public:
 
-	SceneManager() {};
+	SceneManager() { Init();};
 	~SceneManager() {};
 
 	void Init();
@@ -33,9 +34,18 @@ private:
 	SceneType scene;
 
 	Title* m_Title;
+	Game* m_Game;
 	
 
 	//ボタンを押したかどうか
 	bool ClickFlg;
 
+public:
+	static SceneManager& GetInstance()
+	{
+		static SceneManager instance;
+		return instance;
+	}
 };
+
+#define SceneAPP SceneManager::GetInstance()

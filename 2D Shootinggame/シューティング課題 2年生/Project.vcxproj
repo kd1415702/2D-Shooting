@@ -162,6 +162,7 @@
     <ClInclude Include="Src\Application\Info\Info.h" />
     <ClInclude Include="Src\Application\Scene.h" />
     <ClInclude Include="Src\Application\main.h" />
+    <ClInclude Include="Src\Application\Scenes\Game\Game.h" />
     <ClInclude Include="Src\Application\Scenes\SceneBase.h" />
     <ClInclude Include="Src\Application\Scenes\SceneManager.h" />
     <ClInclude Include="Src\Application\Scenes\Title\Title.h" />
@@ -191,6 +192,7 @@
     <ClCompile Include="Src\Application\Info\Info.cpp" />
     <ClCompile Include="Src\Application\Scene.cpp" />
     <ClCompile Include="Src\Application\main.cpp" />
+    <ClCompile Include="Src\Application\Scenes\Game\Game.cpp" />
     <ClCompile Include="Src\Application\Scenes\SceneBase.cpp" />
     <ClCompile Include="Src\Application\Scenes\SceneManager.cpp" />
     <ClCompile Include="Src\Application\Scenes\Title\Title.cpp" />
