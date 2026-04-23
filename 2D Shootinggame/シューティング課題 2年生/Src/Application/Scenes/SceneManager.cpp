@@ -5,16 +5,9 @@
 void SceneManager::Init()
 {
 	//メモリ確保=====
-	m_Title = new Title();
-	m_Game = new Game();
+	
 
-		//===============
-
-
-   //オーナー(SceneManager)セット
-	m_Title->SetOwner(this);
-	m_Game->SetOwner(this);
-
+	//===============
 
 	//音関係読み込み======
 
@@ -25,7 +18,7 @@ void SceneManager::Init()
 
 
 	//タイトルからスタート
-	ChangeScene(TITLE);
+	ChangeScene(GAME);
 	
 }
 
@@ -41,13 +34,15 @@ void SceneManager::Draw()
 
 void SceneManager::ChangeScene(SceneType type)
 {
+
 	switch (type)
 	{
 	case TITLE:
-		m_NowScene = m_Title;
+
+		m_NowScene = std::make_shared<Title>();
 		break;
 	case GAME:
-		m_NowScene = m_Game;
+		m_NowScene = std::make_shared<Game>();
 		break;
 	case RESULT:
 		break;

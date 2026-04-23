@@ -29,12 +29,9 @@ public:
 private:
 
 	//現在のシーンを持たせる(SceneBaseを継承した子クラスのアドレスが入る)
-	SceneBase* m_NowScene = nullptr;
+	std::shared_ptr<SceneBase> m_NowScene;
 
 	SceneType scene;
-
-	Title* m_Title;
-	Game* m_Game;
 	
 
 	//ボタンを押したかどうか

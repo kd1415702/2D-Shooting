@@ -17,11 +17,4 @@ public:
 	virtual void ImGuiUpdate();
 
 
-	void SetOwner(SceneManager* manager) { m_owner = manager; }
-
-
-protected:
-
-	SceneManager* m_owner = nullptr;
-
 };

@@ -4,30 +4,27 @@
 
 void Scene::Draw2D()
 {
-	m_SceneManager.Draw();
+
+	SceneManager::GetInstance().Draw();
 }
 
 void Scene::Update()
 {
-	m_SceneManager.Update();
+	
+
+	SceneManager::GetInstance().Update();
 }
 
 void Scene::Init()
 {
-	/*if (m_SceneManager == nullptr)
-	{
-		m_SceneManager = new SceneManager();
-	}*/
 
-	//if (m_SceneManager != nullptr)
-	//{
-		m_SceneManager.Init();
+	SceneManager::GetInstance().Init();
 	
 }
 
 void Scene::Release()
 {
-	m_SceneManager.~SceneManager();
+	SceneManager::GetInstance().~SceneManager();
 }
 
 void Scene::ImGuiUpdate()

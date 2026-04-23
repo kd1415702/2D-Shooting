@@ -8,7 +8,8 @@ void Game::Update()
 {
 	if (GetAsyncKeyState(VK_SPACE))
 	{
-		m_owner->ChangeScene(TITLE);
+		SceneAPP.ChangeScene(TITLE);
+
 	}
 }
 

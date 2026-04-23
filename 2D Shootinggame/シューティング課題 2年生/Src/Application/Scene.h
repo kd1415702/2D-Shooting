@@ -1,6 +1,4 @@
 #pragma once
-#include"Scenes/SceneManager.h"
-
 
 class Scene
 {
@@ -23,7 +21,6 @@ public:
 
 private:
 
-	SceneManager m_SceneManager;
 
 	Scene() {}
 
