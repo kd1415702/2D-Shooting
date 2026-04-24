@@ -20,11 +20,14 @@ public:
 	void Update();
 	void Draw();
 
+
 	void ImGuiUpdate();
 
 
 	//シーン切り替え関数
 	void ChangeScene(SceneType type);
+
+
 
 private:
 

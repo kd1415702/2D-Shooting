@@ -23,7 +23,7 @@ void Title::Update()
 	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
 	{
 		SceneAPP.ChangeScene(GAME);
-	 /*	m_owner->ChangeScene(GAME);*/
+	
 	}
 }
 
