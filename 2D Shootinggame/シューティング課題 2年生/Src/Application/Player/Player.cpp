@@ -34,41 +34,46 @@ void Player::Update()
 	//	m_Life = m_MaxLife;
 	//}
 
-	//座標確定
-	m_Pos += m_Move;
-
-	ExpUpdate();
-
-	m_Move = { 0.0f,0.0f };
-
-	//右移動
-	if (GetAsyncKeyState('D') & 0x8000)
+	//自機が生存していれば
+	if (m_Flg)
 	{
-		m_Move.x += m_MovePow;
-	}
 
-	//左移動
-	if (GetAsyncKeyState('A') & 0x8000)
-	{
-		m_Move.x -= m_MovePow;
-	}
+		//座標確定
+		m_Pos += m_Move;
 
-	//上移動
-	if (GetAsyncKeyState('W') & 0x8000)
-	{
-		m_Move.y += m_MovePow;
-	}
+		ExpUpdate();
 
-	//下移動
-	if (GetAsyncKeyState('S') & 0x8000)
-	{
-		m_Move.y -= m_MovePow;
-	}
+		m_Move = { 0.0f,0.0f };
 
-	m_AnimCnt += 0.1f;
-	if (m_AnimCnt >= 4)
-	{
-		m_AnimCnt = 0;
+		//右移動
+		if (GetAsyncKeyState('D') & 0x8000)
+		{
+			m_Move.x += m_MovePow;
+		}
+
+		//左移動
+		if (GetAsyncKeyState('A') & 0x8000)
+		{
+			m_Move.x -= m_MovePow;
+		}
+
+		//上移動
+		if (GetAsyncKeyState('W') & 0x8000)
+		{
+			m_Move.y += m_MovePow;
+		}
+
+		//下移動
+		if (GetAsyncKeyState('S') & 0x8000)
+		{
+			m_Move.y -= m_MovePow;
+		}
+
+		m_AnimCnt += 0.1f;
+		if (m_AnimCnt >= 4)
+		{
+			m_AnimCnt = 0;
+		}
 	}
 
 	m_TransMat = Math::Matrix::CreateTranslation(m_Pos.x, m_Pos.y, 0);

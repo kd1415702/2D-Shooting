@@ -45,6 +45,10 @@ public:
 
 	//レベルゲッター
 	int GetLv() { return m_PlayerLv; }
+
+	//自機生存フラグゲッター
+	bool GetPlayerFlg() { return m_Flg; }
+
 	//============================
 
 	//変数セッター============
@@ -62,8 +66,7 @@ public:
 	//透明度セッター
 	void SetAlpha(float alpha) { m_Alpha = alpha; }
 
-	//自機生存フラグゲッター
-	bool GetPlayerFlg() { return m_Flg; }
+	void SetFlg(float flg) { m_Flg = flg; }
 
 	//==================
 

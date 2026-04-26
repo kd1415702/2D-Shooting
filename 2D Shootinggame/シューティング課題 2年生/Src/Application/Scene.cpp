@@ -11,7 +11,6 @@ void Scene::Draw2D()
 void Scene::Update()
 {
 	
-
 	SceneManager::GetInstance().Update();
 }
 

@@ -36,18 +36,25 @@ void SceneManager::ChangeScene(SceneType type)
 	switch (type)
 	{
 	case TITLE:
-
+	{
 		m_NowScene = std::make_shared<Title>();
 		//m_NowScene->Init();
 		break;
+	}
 	case GAME:
+	{
 		m_NowScene = std::make_shared<Game>();
 		m_NowScene->Init();
 		break;
+	}
 	case RESULT:
+	{
 		break;
+	}
 	case GAMEOVER:
+	{
 		break;
+	}
 	default:
 		break;
 	}

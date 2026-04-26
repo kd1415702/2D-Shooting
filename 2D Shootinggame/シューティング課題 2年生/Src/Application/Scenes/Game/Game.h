@@ -21,8 +21,10 @@ public:
 
 private:
 	
-	//自機
+	//自機 //スマートポインタのため、解放する必要がない
 	std::shared_ptr<Player> m_Player;
+	/*Player* m_Player;*/
+
 	//自機画像
 	KdTexture m_PlayerTex;
 
