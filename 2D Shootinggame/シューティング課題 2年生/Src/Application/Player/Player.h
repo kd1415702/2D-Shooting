@@ -1,5 +1,8 @@
 #pragma once
 
+//前方宣言
+class EnemyBase;
+
 enum PlayerColor
 {
 	Black,
@@ -85,7 +88,7 @@ public:
 	
 
 	//被弾処理
-	void HitDmg(float dmg);
+	void HitDmg();
 
 	
 
@@ -134,9 +137,6 @@ private:
 	//攻撃力
 	int m_Atk;
 
-	//無敵時間
-	float m_Invisible;
-
 	//自機透明度
 	float m_Alpha;
 
@@ -150,6 +150,24 @@ private:
 	//次のレベルまでに必要な経験値量
 	int m_PlayerNextLvExp;
 
+	//現在の色
 	PlayerColor m_PColor;
+
+	//受けるダメージクールタイム====
+
+	//ダメージを受けた後の無敵時間
+	const int m_PlayerHitCD = 100;
+
+	//無敵時間カウンター
+	int m_PlayerHitCDCnt;
+
+	//点滅処理
+	void PlayerHitCDManager();
+
+	//trueなら点滅する
+	bool m_BlinkFlg;
+
+	float BlinkNum;
+
 
 };

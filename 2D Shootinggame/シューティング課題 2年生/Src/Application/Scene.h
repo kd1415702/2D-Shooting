@@ -1,5 +1,7 @@
 #pragma once
 
+class Player;
+
 class Scene
 {
 public:
@@ -21,6 +23,7 @@ public:
 
 private:
 
+	std::shared_ptr<Player> m_Player = nullptr;
 
 	Scene() {}
 

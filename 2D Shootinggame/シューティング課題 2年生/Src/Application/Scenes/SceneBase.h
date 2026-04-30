@@ -9,7 +9,7 @@ class SceneBase
 public:
 
 	SceneBase() {};
-	~SceneBase() {};
+	virtual ~SceneBase() {};
 
 	virtual void Init();
 	virtual void Update();

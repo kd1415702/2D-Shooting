@@ -1,4 +1,5 @@
 #include "Player.h"
+#include"../Enemy/Enemy.h"
 
 //初期化
 void Player::Init()
@@ -12,7 +13,7 @@ void Player::Init()
 
 	m_Rect = 64;
 
-	m_Radius = m_Rect * m_Scale.x / 2;
+	m_Radius = m_Rect * m_Scale.x / 2.0f;
 
 	m_MaxLife = 3;
 
@@ -23,6 +24,13 @@ void Player::Init()
 	m_PColor = White;
 
 	m_AnimCnt = 0;
+
+	BlinkNum = 0.05;
+
+	m_BlinkFlg = false;
+
+	m_PlayerHitCDCnt = 0;
+
 
 }
 
@@ -37,6 +45,9 @@ void Player::Update()
 	//自機が生存していれば
 	if (m_Flg)
 	{
+	
+
+		PlayerHitCDManager();
 
 		//座標確定
 		m_Pos += m_Move;
@@ -44,6 +55,7 @@ void Player::Update()
 		ExpUpdate();
 
 		m_Move = { 0.0f,0.0f };
+
 
 		//右移動
 		if (GetAsyncKeyState('D') & 0x8000)
@@ -74,13 +86,15 @@ void Player::Update()
 		{
 			m_AnimCnt = 0;
 		}
+
+
 	}
 
-	m_TransMat = Math::Matrix::CreateTranslation(m_Pos.x, m_Pos.y, 0);
-	m_ScaleMat = Math::Matrix::CreateScale(m_Scale.x, m_Scale.y, 0);
-	m_Mat = m_ScaleMat * m_TransMat;
+		m_TransMat = Math::Matrix::CreateTranslation(m_Pos.x, m_Pos.y, 0);
+		m_ScaleMat = Math::Matrix::CreateScale(m_Scale.x, m_Scale.y, 0);
+		m_Mat = m_ScaleMat * m_TransMat;
 
-}
+	}
 
 void Player::Draw()
 {
@@ -96,4 +110,55 @@ void Player::ExpUpdate()
 {}
 
 void Player::ImGuiUpdate()
-{}
+{
+	ImGui::Text(u8"PlayerLife:%d", m_Life);
+	ImGui::Text(u8"PlayerFlg : %d", m_Flg);
+}
+
+void Player::HitDmg()
+{
+	if (m_PlayerHitCDCnt >= m_PlayerHitCD)
+	{
+		m_BlinkFlg = true;
+		m_Life--;
+		m_PlayerHitCDCnt = 0;
+		m_Alpha = 0.5f;
+		//ここに音
+
+		if (m_Life <= 0)
+		{
+			m_Life = 0;
+
+			m_Flg = false;
+		}
+
+	}
+}
+
+void Player::PlayerHitCDManager()
+{
+	m_PlayerHitCDCnt++;
+
+	if (m_PlayerHitCDCnt >= m_PlayerHitCD)
+	{
+		m_Alpha = 1.0f;
+		m_BlinkFlg = false;
+	}
+
+	//点滅処理
+	if (m_BlinkFlg)
+	{
+		m_Alpha -= BlinkNum;
+
+		if (m_Alpha < 0.5f)
+		{
+			BlinkNum *= -1;
+			m_Alpha = 0.5f;
+		}
+		else if (m_Alpha > 0.9f)
+		{
+			BlinkNum *= -1;
+			m_Alpha = 0.9f;
+		}
+	}
+}

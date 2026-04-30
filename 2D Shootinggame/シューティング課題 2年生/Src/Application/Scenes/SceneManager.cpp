@@ -29,6 +29,11 @@ void SceneManager::Draw()
 	m_NowScene->Draw();
 }
 
+void SceneManager::ImGuiUpdate()
+{
+	m_NowScene->ImGuiUpdate();
+}
+
 
 void SceneManager::ChangeScene(SceneType type)
 {
