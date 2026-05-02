@@ -3,7 +3,7 @@
 #include"../../Player/Player.h"
 #include"../../Enemy/Enemy.h"
 #include"../Title/Title.h"
-#include"../../Hit/Hit.h"
+//#include"../../Hit/Hit.h"
 
 
 //初期化
@@ -12,7 +12,7 @@ void Game::Init()
 	//領域確保
 	m_Player = std::make_shared<Player>();
 	m_Enemy = std::make_shared<Enemy>();
-	m_Hit = std::make_shared<Hit>();
+	//m_Hit = std::make_shared<Hit>();
 
 	//自機初期化
 	m_Player->Init();
@@ -22,12 +22,15 @@ void Game::Init()
 	//敵初期化
 	m_Enemy->Init();
 
-	m_Hit->Init();
+
+
+	//m_Hit->Init();
 }
 
 //更新
 void Game::Update()
 {
+
 	//更新処理
 	if (m_Player == nullptr) { return; }
 	if (m_Enemy == nullptr) { return; }
@@ -38,6 +41,8 @@ void Game::Update()
 	m_Player->Update();
 
 	m_Enemy->Update();
+
+
 
 	//m_Hit->EnemyPlayerHit();
 
@@ -59,30 +64,28 @@ void Game::Update()
 
 			return;
 		}
+
 	}
 
-
-	/*m_Hit->EnemyPlayerHit(m_Enemy);*/
-	
-
-	//タイトルへ戻る
-	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
-	{	
-		if (m_KeyFlg == false)
+		//タイトルへ戻る
+		if (GetAsyncKeyState(VK_RETURN) & 0x8000)
 		{
-			SceneAPP.ChangeScene(TITLE);
-			m_KeyFlg = true;
+			if (m_KeyFlg == false)
+			{
+				SceneAPP.ChangeScene(TITLE);
+				m_KeyFlg = true;
+			}
 		}
-	}
-	else
-	{
-		m_KeyFlg = false;
-	}
+		else
+		{
+			m_KeyFlg = false;
+		}
 
 
 
 
-	
+
+
 }
 
 
@@ -109,7 +112,7 @@ void Game::Draw()
 
 void Game::Release()
 {
-
+	m_PlayerTex.Release();
 }
 
 void Game::ImGuiUpdate()

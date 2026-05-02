@@ -1,7 +1,5 @@
 #pragma once
 
-//前方宣言
-class EnemyBase;
 
 enum PlayerColor
 {

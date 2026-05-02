@@ -183,6 +183,33 @@ void Title::UpdateSelectTitle()
 
 
 
+	
+
+	m_ArrowPos.x -= m_ArrowMove;
+	if (m_ArrowPos.x <= ArrowLeft || m_ArrowPos.x >= ArrowRight)
+	{
+		m_ArrowMove *= -1;
+	}
+
+
+
+
+	//プレイボタン
+	m_PlayTransMat = Math::Matrix::CreateTranslation(m_PlayPos.x, m_PlayPos.y, 0);
+	m_PlayScaleMat = Math::Matrix::CreateScale(m_PlayScale.x, m_PlayScale.y, 0);
+	m_PlayMat = m_PlayScaleMat * m_PlayTransMat;
+
+	//ゲーム終了ボタン
+	m_EndTransMat = Math::Matrix::CreateTranslation(m_EndPos.x, m_EndPos.y, 0);
+	m_EndScaleMat = Math::Matrix::CreateScale(m_EndScale.x, m_EndScale.y, 0);
+	m_EndMat = m_EndScaleMat * m_EndTransMat;
+
+	//矢印
+	m_ArrowTransMat = Math::Matrix::CreateTranslation(m_ArrowPos.x, m_ArrowPos.y, 0);
+	m_ArrowScaleMat = Math::Matrix::CreateScale(0.5f, 0.5f, 0);
+	m_ArrowMat = m_ArrowScaleMat * m_ArrowTransMat;
+
+
 	//プレイ状態の場合
 	if (m_Select == Play)
 	{
@@ -246,29 +273,6 @@ void Title::UpdateSelectTitle()
 
 	}
 
-	m_ArrowPos.x -= m_ArrowMove;
-	if (m_ArrowPos.x <= ArrowLeft || m_ArrowPos.x >= ArrowRight)
-	{
-		m_ArrowMove *= -1;
-	}
-
-
-
-
-	//プレイボタン
-	m_PlayTransMat = Math::Matrix::CreateTranslation(m_PlayPos.x, m_PlayPos.y, 0);
-	m_PlayScaleMat = Math::Matrix::CreateScale(m_PlayScale.x, m_PlayScale.y, 0);
-	m_PlayMat = m_PlayScaleMat * m_PlayTransMat;
-
-	//ゲーム終了ボタン
-	m_EndTransMat = Math::Matrix::CreateTranslation(m_EndPos.x, m_EndPos.y, 0);
-	m_EndScaleMat = Math::Matrix::CreateScale(m_EndScale.x, m_EndScale.y, 0);
-	m_EndMat = m_EndScaleMat * m_EndTransMat;
-
-	//矢印
-	m_ArrowTransMat = Math::Matrix::CreateTranslation(m_ArrowPos.x, m_ArrowPos.y, 0);
-	m_ArrowScaleMat = Math::Matrix::CreateScale(0.5f, 0.5f, 0);
-	m_ArrowMat = m_ArrowScaleMat * m_ArrowTransMat;
 }
 
 void Title::DrawSelectTitle()

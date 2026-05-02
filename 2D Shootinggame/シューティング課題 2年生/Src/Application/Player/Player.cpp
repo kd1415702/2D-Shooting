@@ -1,5 +1,5 @@
 #include "Player.h"
-#include"../Enemy/Enemy.h"
+
 
 //初期化
 void Player::Init()
@@ -30,7 +30,6 @@ void Player::Init()
 	m_BlinkFlg = false;
 
 	m_PlayerHitCDCnt = 0;
-
 
 }
 
@@ -80,6 +79,37 @@ void Player::Update()
 		{
 			m_Move.y -= m_MovePow;
 		}
+
+
+		//if (m_Enemy->GetFlg())
+		//{
+		//	const float x = m_Enemy->GetPos().x - m_Pos.x;
+		//	const float y = m_Enemy->GetPos().y - m_Pos.y;
+		//	const float z = sqrt(x * x + y * y);
+
+
+
+		//	//半径＋半径
+		//	const float sum = m_Enemy->GetRadius() + m_Radius;
+
+		//	if (z < sum)
+		//	{
+
+		//		HitDmg();
+
+		//		return;
+		//	}
+		//}
+
+
+
+
+
+
+
+
+
+
 
 		m_AnimCnt += 0.1f;
 		if (m_AnimCnt >= 4)

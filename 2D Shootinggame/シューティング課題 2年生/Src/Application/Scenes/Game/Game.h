@@ -5,7 +5,7 @@
 //前方宣言
 class Player;
 class EnemyBase;
-class Hit;
+//class Hit;
 
 //ゲーム画面を管理するクラス
 class Game : public SceneBase
@@ -34,8 +34,8 @@ private:
 	//敵
 	std::shared_ptr<EnemyBase> m_Enemy = nullptr;
 
-	//当たり判定
-	std::shared_ptr<Hit> m_Hit = nullptr;
+	////当たり判定
+	//std::shared_ptr<Hit> m_Hit = nullptr;
 
 	//ボタンを押したかどうか
 	bool m_KeyFlg = false;
