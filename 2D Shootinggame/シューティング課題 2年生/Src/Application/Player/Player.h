@@ -1,10 +1,11 @@
 #pragma once
 
+class GameScene;
 
 enum PlayerColor
 {
-	Black,
-	White
+	Red,
+	Blue
 };
 
 class Player
@@ -26,6 +27,7 @@ public:
 
 	//GUI処理
 	void ImGuiUpdate();
+
 
 	//変数ゲッター===========
 
@@ -67,7 +69,11 @@ public:
 	//透明度セッター
 	void SetAlpha(float alpha) { m_Alpha = alpha; }
 
+	//生存フラグセッター
 	void SetFlg(float flg) { m_Flg = flg; }
+
+	//切り取り場所セッター
+	void SetRect(int rectX, int rectY) { m_RectX = rectX, m_RectY = rectY; }
 
 	//==================
 
@@ -91,6 +97,7 @@ public:
 	
 
 private:
+
 
 	//自機画像
 	KdTexture* m_Tex;
@@ -165,7 +172,11 @@ private:
 	//trueなら点滅する
 	bool m_BlinkFlg;
 
-	float BlinkNum;
+	float m_BlinkNum;
+
+	//自機の切り取り場所
+	int m_RectX;
+	int m_RectY;
 
 
 };

@@ -1,11 +1,11 @@
 #pragma once
 
-class EnemyBase
+class ObjectBase
 {
 public:
 
-	EnemyBase() {};
-	virtual ~EnemyBase() {};
+	ObjectBase() {};
+	virtual ~ObjectBase() {};
 
 	virtual void Init();
 	virtual void Update();

@@ -64,11 +64,14 @@ private:
 	Math::Matrix m_PEMat;
 
 	//Press Enterの初期位置,上限、下限移動値
-	Math::Vector2 PEFirst;
-	float PETop;
-	float PEBottom;
+	Math::Vector2 m_PEFirst;
+	float m_PETop;
+	float m_PEBottom;
 	//移動量
 	float m_PEMove;
+
+	//FirstTitleかどうか(TrueならFirstTitle)
+	bool m_FirstFlg;
 
 	//========================================
 

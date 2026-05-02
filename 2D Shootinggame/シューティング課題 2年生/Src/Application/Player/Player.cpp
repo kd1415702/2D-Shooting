@@ -1,35 +1,51 @@
 #include "Player.h"
-
+#include"../Scenes/Game/Game.h"
+#include"../Object/Bullet/Bullet.h"
 
 //初期化
 void Player::Init()
 {
-
+	//座標
 	m_Pos = { 0,0 };
 
-	m_Scale = { 1,1 };
+	//拡大率
+	m_Scale = { 1.5f,2.0f };
 
+	//生存フラグ
 	m_Flg = true;
 
+	//切り取り範囲
 	m_Rect = 64;
 
+	//半径
 	m_Radius = m_Rect * m_Scale.x / 2.0f;
 
+	//最大ライフ
 	m_MaxLife = 3;
 
+	//現在ライフ
 	m_Life = m_MaxLife;
 
+	//透明度
 	m_Alpha = 1.0f;
 
-	m_PColor = White;
+	//現在カラー
+	m_PColor = Red;
 
-	m_AnimCnt = 0;
+	//点滅
+	m_BlinkNum = 0.05;
 
-	BlinkNum = 0.05;
-
+	//点滅フラグ
 	m_BlinkFlg = false;
 
+	//無敵時間カウンター
 	m_PlayerHitCDCnt = 0;
+
+	//切り取り場所(横)
+	m_RectX = 64;
+
+	//切り取り場所(縦)
+	m_RectY = 0;
 
 }
 
@@ -79,6 +95,17 @@ void Player::Update()
 		{
 			m_Move.y -= m_MovePow;
 		}
+
+
+		//if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+		//{
+		//	std::shared_ptr<Bullet> bullet;
+		//	bullet = std::make_shared<Bullet>();
+		//	bullet->Init();
+
+		//	bullet->SetPos(m_Pos);
+		//	GameAPP.AddObject(bullet);
+		//}
 
 
 		//if (m_Enemy->GetFlg())
@@ -132,7 +159,7 @@ void Player::Draw()
 	if (m_Flg)
 	{
 		SHADER.m_spriteShader.SetMatrix(m_Mat);
-		SHADER.m_spriteShader.DrawTex(m_Tex, Math::Rectangle{ (int)m_AnimCnt * m_Rect,0,m_Rect,m_Rect }, m_Alpha);
+		SHADER.m_spriteShader.DrawTex(m_Tex, Math::Rectangle{ m_RectX,m_RectY,m_Rect,m_Rect }, m_Alpha);
 	}
 }
 
@@ -178,16 +205,16 @@ void Player::PlayerHitCDManager()
 	//点滅処理
 	if (m_BlinkFlg)
 	{
-		m_Alpha -= BlinkNum;
+		m_Alpha -= m_BlinkNum;
 
 		if (m_Alpha < 0.5f)
 		{
-			BlinkNum *= -1;
+			m_BlinkNum *= -1;
 			m_Alpha = 0.5f;
 		}
 		else if (m_Alpha > 0.9f)
 		{
-			BlinkNum *= -1;
+			m_BlinkNum *= -1;
 			m_Alpha = 0.9f;
 		}
 	}

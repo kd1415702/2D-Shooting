@@ -8,19 +8,20 @@ Title::Title()
 	//Press Enter
 	m_PETex.Load("Assets/Texture/UI/Title/Press Enter.png");
 	//Press Enterの初期位置,上限、下限移動値
-	PEFirst = { 0,-125 };
-	PETop = PEFirst.y + 20;
-	PEBottom = PEFirst.y - 20;
+	m_PEFirst = { 0,-125 };
+	m_PETop = m_PEFirst.y + 20;
+	m_PEBottom = m_PEFirst.y - 20;
 	//移動量
 	m_PEMove = 0.3f;
 	//座標
-	m_PEPos = { PEFirst };
+	m_PEPos = { m_PEFirst };
 
 	m_PETransMat = Math::Matrix::CreateTranslation(m_PEPos.x, m_PEPos.y, 0);
 	m_PEScaleMat = Math::Matrix::CreateScale(1, 1, 0);
 	m_PEMat = m_PEScaleMat * m_PETransMat;
 
 
+	m_FirstFlg = true;
 
 	//SelectTitle基準点
 	m_SelectPos = { 0,-150 };
@@ -66,6 +67,7 @@ Title::Title()
 	m_Select = Play;
 
 	m_ArrowFlg = false;
+
 
 
 }
@@ -142,7 +144,7 @@ void Title::UpdateFirstTitle()
 {
 	//Press Enterが上下移動する
 	m_PEPos.y += m_PEMove;
-	if (m_PEPos.y >= PETop || m_PEPos.y <= PEBottom)
+	if (m_PEPos.y >= m_PETop || m_PEPos.y <= m_PEBottom)
 	{
 		m_PEMove *= -1;
 	}
@@ -167,9 +169,17 @@ void Title::UpdateFirstTitle()
 
 	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
 	{
-		m_NowTitle = SelectTitle;
-		ArrowInit();
+		m_FirstFlg = false;
 	}
+	else
+	{
+		if (!m_FirstFlg)
+		{
+			m_NowTitle = SelectTitle;
+			ArrowInit();
+		}
+	}
+
 }
 
 void Title::DrawFirstTitle()
@@ -226,7 +236,7 @@ void Title::UpdateSelectTitle()
 		}
 
 		//ゲームシーンへ移動
-		if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+		if (GetAsyncKeyState(VK_RETURN) & 0x8000)
 		{
 			if (m_KeyFlg == false)
 			{
@@ -257,7 +267,7 @@ void Title::UpdateSelectTitle()
 		}
 
 		//ゲーム終了
-		if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+		if (GetAsyncKeyState(VK_RETURN) & 0x8000)
 		{
 			if (m_KeyFlg == false)
 			{
