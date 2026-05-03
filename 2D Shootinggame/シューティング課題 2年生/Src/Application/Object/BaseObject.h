@@ -1,16 +1,11 @@
 #pragma once
+#include"../Info/Info.h"
 
 class BaseObject
 {
 public:
 
-	//オブジェクトの種類
-	enum class ObjectType
-	{
-		NONE,	//タイプ無し
-		ENEMY,	//エネミー
-		BULLET, //弾
-	};
+
 
 	BaseObject() {};
 	virtual ~BaseObject() {};
@@ -29,7 +24,7 @@ public:
 	/*void SetTex(KdTexture* tex) { m_Tex = tex; }*/
 
 	//フラグセッター
-	void SetFlg(bool flg) { m_Flg = flg; }
+	virtual void SetFlg(bool flg) { m_Flg = flg; }
 
 	//座標セッター
 	void SetPos(Math::Vector2 pos) { m_Pos = pos; }

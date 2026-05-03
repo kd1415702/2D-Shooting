@@ -4,7 +4,7 @@
 #include"../../Object/Enemy/Enemy.h"
 #include"../Title/Title.h"
 #include"../../Object/Bullet/Bullet.h"
-//#include"../../Hit/Hit.h"
+#include"../../Object/BaseObject.h"
 
 
 //初期化
@@ -26,16 +26,21 @@ void Game::Init()
 
 	//敵初期化
 	std::shared_ptr<Enemy> enemy;
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		enemy = std::make_shared<Enemy>();
 		enemy->Init();
 		m_ObjList.push_back(enemy);
 	}
 
+	//弾初期化
+	std::shared_ptr<Bullet> bullet;
+	bullet = std::make_shared<Bullet>();
+	bullet->Init();
+	bullet->SetOwner(this);
+	m_ObjList.push_back(bullet);
 
-
-	//m_Hit->Init();
+	m_BulletCnt = 11;
 }
 
 //更新
@@ -47,27 +52,53 @@ void Game::Update()
 
 	PreUpdate();
 
-	m_Player->Update();
-
-
 
 	for (int i = 0; i < m_ObjList.size(); ++i)
 	{
 		m_ObjList[i]->Update();
 	}
 
-	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
-	{
-		std::shared_ptr<Bullet> bullet;
-		bullet = std::make_shared<Bullet>();
-		bullet->Init();
-		bullet->SetOwner(this);
+	m_Player->Update();
 
-		bullet->SetPos(m_Player->GetPos());
-		m_ObjList.push_back(bullet);
+	//敵との当たり判定
+	for (auto obj : m_ObjList)
+	{
+		if (obj->GetObjType() == ObjectType::ENEMY)
+		{
+			Math::Vector2 v;
+			v = obj->GetPos() - m_Player->GetPos();
+
+			if (v.Length() < m_Player->GetRadius())
+			{
+				m_Player->HitDmg();
+			}
+		}
 	}
 
 
+
+
+
+	m_BulletCntManager();
+
+	//弾発射
+	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+	{
+		if (m_BulletCnt >= m_BulletCT)
+		{
+			std::shared_ptr<Bullet> bullet;
+			bullet = std::make_shared<Bullet>();
+
+			//球発射
+			bullet->Init();
+			bullet->SetFlg(true);
+			bullet->SetPos(m_Player->GetPos());
+			m_BulletCnt = 0;
+
+			bullet->SetOwner(this);
+			m_ObjList.push_back(bullet);
+		}
+	}
 
 
 	//m_Hit->EnemyPlayerHit();
@@ -127,6 +158,7 @@ void Game::Draw()
 		m_ObjList[i]->Draw();
 	}
 
+
 	//自機描画	
 	m_Player->Draw();
 	
@@ -170,4 +202,22 @@ void Game::PreUpdate()
 			it++;	// 次の要素へイテレータを進める
 		}
 	}
+}
+
+void Game::BulletAct()
+{
+
+	if (m_BulletCnt >= m_BulletCT)
+	{
+		std::shared_ptr<Bullet> bullet;
+		bullet = std::make_shared<Bullet>();
+
+
+		m_BulletCnt = 0;
+	}
+}
+
+void Game::m_BulletCntManager()
+{
+	m_BulletCnt++;
 }

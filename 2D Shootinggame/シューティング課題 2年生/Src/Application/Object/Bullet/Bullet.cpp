@@ -6,14 +6,19 @@ void Bullet::Init()
 	
 
 	m_Pos = {};
-	m_Flg = true;
 	m_Move = { 5.0f,5.0f };
+	m_Flg = false;
 
 	m_Rect = 16;
 
-	m_Scale = { 2.0f,2.0f };
+	m_Scale = { 4.0f,4.0f };
+
+	m_radius = m_Rect * m_Scale.x / 2;
 
 	m_objType = ObjectType::BULLET;
+
+	m_Tex.Load("Assets/Texture/Bullet/Triple_Shot_Blue.png");
+
 }
 
 void Bullet::Update()
@@ -25,7 +30,10 @@ void Bullet::Update()
 		m_Flg = false;
 	}
 
+
 	
+
+	//敵との当たり判定
 	for (auto obj : m_owner->GetObjeList())
 	{
 		if (obj->GetObjType() == ObjectType::ENEMY)
@@ -33,9 +41,11 @@ void Bullet::Update()
 			Math::Vector2 v;
 			v = obj->GetPos() - m_Pos;
 
-			if (v.Length() < 64.0f)
+			if (v.Length() < m_radius)
 			{
+				m_Flg = false;
 				obj->Hit();
+				
 			}
 		}
 	}
@@ -52,6 +62,10 @@ void Bullet::Draw()
 	SHADER.m_spriteShader.SetMatrix(m_Mat);
 	SHADER.m_spriteShader.DrawTex(&m_Tex, Math::Rectangle{ 0,0,m_Rect,m_Rect }, 1.0f);
 }
+
+
+
+
 
 void Bullet::Release()
 {

@@ -1,7 +1,6 @@
 #include "main.h"
 #include "Scene.h"
 #include "Scenes/SceneManager.h"
-#include"Player/Player.h"
 
 void Scene::Draw2D()
 {
@@ -20,7 +19,6 @@ void Scene::Init()
 
 	SceneManager::GetInstance().Init();
 
-	m_Player = std::make_shared<Player>();
 	
 }
 

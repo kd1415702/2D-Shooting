@@ -1,6 +1,6 @@
 #pragma once
 
-class GameScene;
+class Game;
 
 enum PlayerColor
 {
@@ -94,10 +94,11 @@ public:
 	//被弾処理
 	void HitDmg();
 
-	
+	void SetOwner(Game* owner) { m_Owner = owner; }
 
 private:
-
+	
+	Game* m_Owner = nullptr;
 
 	//自機画像
 	KdTexture* m_Tex;

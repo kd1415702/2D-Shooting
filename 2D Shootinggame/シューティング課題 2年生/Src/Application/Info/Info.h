@@ -9,6 +9,15 @@ enum SceneType
 };
 
 
+//オブジェクトの種類
+enum class ObjectType
+{
+	NONE,	//タイプ無し
+	ENEMY,	//エネミー
+	BULLET, //弾
+};
+
+
 class Info
 {
 public:

@@ -1,7 +1,8 @@
 #include "Player.h"
 #include"../Scenes/Game/Game.h"
 #include"../Object/Bullet/Bullet.h"
-
+#include"../Object/BaseObject.h"
+#include"../Info/Info.h"
 //初期化
 void Player::Init()
 {
@@ -95,39 +96,6 @@ void Player::Update()
 		{
 			m_Move.y -= m_MovePow;
 		}
-
-
-		//if (GetAsyncKeyState(VK_SPACE) & 0x8000)
-		//{
-		//	std::shared_ptr<Bullet> bullet;
-		//	bullet = std::make_shared<Bullet>();
-		//	bullet->Init();
-
-		//	bullet->SetPos(m_Pos);
-		//	GameAPP.AddObject(bullet);
-		//}
-
-
-		//if (m_Enemy->GetFlg())
-		//{
-		//	const float x = m_Enemy->GetPos().x - m_Pos.x;
-		//	const float y = m_Enemy->GetPos().y - m_Pos.y;
-		//	const float z = sqrt(x * x + y * y);
-
-
-
-		//	//半径＋半径
-		//	const float sum = m_Enemy->GetRadius() + m_Radius;
-
-		//	if (z < sum)
-		//	{
-
-		//		HitDmg();
-
-		//		return;
-		//	}
-		//}
-
 
 
 

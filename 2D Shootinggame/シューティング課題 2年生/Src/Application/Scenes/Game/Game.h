@@ -37,6 +37,18 @@ public:
 	}
 
 private:
+
+	//弾発射
+	void BulletAct();
+
+	//クールタイムマネージャー
+	void m_BulletCntManager();
+
+	//クールタイム(次に打てるまでの時間)
+	const int m_BulletCT = 10;
+
+	//クールタイムカウンター
+	int m_BulletCnt;
 	
 	//自機 //スマートポインタのため、解放する必要がない
 	std::shared_ptr<Player> m_Player = nullptr;
