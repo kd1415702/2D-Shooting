@@ -12,9 +12,10 @@ enum SceneType
 //オブジェクトの種類
 enum class ObjectType
 {
-	NONE,	//タイプ無し
-	ENEMY,	//エネミー
-	BULLET, //弾
+	NONE,			//タイプ無し
+	ENEMY,			//エネミー
+	BULLET,			//自機の弾
+	ENEMYBULLET,	//敵の球
 };
 
 

@@ -4,7 +4,7 @@
 #include"../../Object/Enemy/Enemy.h"
 #include"../Title/Title.h"
 #include"../../Object/Bullet/Bullet.h"
-#include"../../Object/BaseObject.h"
+#include"../../Object/EnemyBullet/EnemyBullet.h"
 
 
 //初期化
@@ -26,7 +26,7 @@ void Game::Init()
 
 	//敵初期化
 	std::shared_ptr<Enemy> enemy;
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		enemy = std::make_shared<Enemy>();
 		enemy->Init();
@@ -41,24 +41,37 @@ void Game::Init()
 	m_ObjList.push_back(bullet);
 
 	m_BulletCnt = 11;
+
+	//敵弾初期化
+	//std::shared_ptr<EnemyBullet> ebullet;
+	//ebullet = std::make_shared<EnemyBullet>();
+	//ebullet->SetOwner(this);
+	//m_ObjList.push_back(ebullet);
 }
 
 //更新
 void Game::Update()
 {
-
-	//更新処理
+	
 	if (m_Player == nullptr) { return; }
 
+	//事前更新
 	PreUpdate();
 
-
+	//全オブジェクト更新
 	for (int i = 0; i < m_ObjList.size(); ++i)
 	{
 		m_ObjList[i]->Update();
 	}
 
+	//自機更新
 	m_Player->Update();
+	
+	//自機弾発射マネージャー
+	m_BulletCntManager();
+
+	//敵弾発射処理
+	EnemyBulletAct();
 
 	//敵との当たり判定
 	for (auto obj : m_ObjList)
@@ -75,11 +88,58 @@ void Game::Update()
 		}
 	}
 
+	//敵弾との当たり判定
+	for (auto obj : m_ObjList)
+	{
+		if (obj->GetObjType() == ObjectType::ENEMYBULLET)
+		{
+			Math::Vector2 v;
+			v = obj->GetPos() - m_Player->GetPos();
+
+			if (v.Length() < m_Player->GetRadius())
+			{
+				//弾が赤の場合
+				if (obj->GetColor() == RED)
+				{
+					//弾と同じ色なら
+					if (m_Player->GetColor() == RED)
+					{
+						//経験値ゲット
+						m_Player->SetExp(10);
+						obj->SetFlg(false);
+					}
+					//弾と違う色なら
+					else if (m_Player->GetColor() == BLUE)
+					{
+						//ダメージ
+						m_Player->HitDmg();
+						obj->SetFlg(false);
+					}
+				}
+				//弾が青の場合
+				else if (obj->GetColor() == BLUE)
+				{
+					//弾と違う色なら
+					if (m_Player->GetColor() == RED)
+					{
+						//ダメージ
+						m_Player->HitDmg();
+						obj->SetFlg(false);
+					}
+					//弾と同じ色なら
+					else if (m_Player->GetColor() == BLUE)
+					{
+						//経験値ゲット
+						m_Player->SetExp(10);
+						obj->SetFlg(false);
+					}
+				}
+			}
+		}
+	}
 
 
 
-
-	m_BulletCntManager();
 
 	//弾発射
 	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
@@ -152,7 +212,7 @@ void Game::Draw()
 {
 	if(m_Player == nullptr){return;}
 
-	//敵描画
+	//全オブジェクト描画
 	for (int i = 0; i < m_ObjList.size(); ++i)
 	{
 		m_ObjList[i]->Draw();
@@ -173,6 +233,11 @@ void Game::Draw()
 void Game::Release()
 {
 	m_PlayerTex.Release();
+
+	for (int i = 0; i < m_ObjList.size(); ++i)
+	{
+		m_ObjList.clear();
+	}
 }
 
 void Game::ImGuiUpdate()
@@ -220,4 +285,21 @@ void Game::BulletAct()
 void Game::m_BulletCntManager()
 {
 	m_BulletCnt++;
+}
+
+//敵弾発射処理
+void Game::EnemyBulletAct()
+{
+	std::shared_ptr<Enemy> enemy;
+	enemy = std::make_shared<Enemy>();
+
+	std::shared_ptr<EnemyBullet> ebullet;
+	ebullet = std::make_shared<EnemyBullet>();
+
+	if (rand() % 50 == 1)
+	{
+		ebullet->SetOwner(this);
+		ebullet->Init();
+		m_ObjList.push_back(ebullet);
+	}
 }

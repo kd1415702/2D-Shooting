@@ -31,7 +31,7 @@ void Player::Init()
 	m_Alpha = 1.0f;
 
 	//現在カラー
-	m_PColor = Red;
+	m_PColor = RED;
 
 	//点滅
 	m_BlinkNum = 0.05;
@@ -47,6 +47,12 @@ void Player::Init()
 
 	//切り取り場所(縦)
 	m_RectY = 0;
+
+	//現在カラー
+	m_PColor = RED;
+
+	//現在経験値
+	m_PlayerExp = 0;
 
 }
 
@@ -138,6 +144,7 @@ void Player::ImGuiUpdate()
 {
 	ImGui::Text(u8"PlayerLife:%d", m_Life);
 	ImGui::Text(u8"PlayerFlg : %d", m_Flg);
+	ImGui::Text(u8"EXP : %d", m_PlayerExp);
 }
 
 void Player::HitDmg()

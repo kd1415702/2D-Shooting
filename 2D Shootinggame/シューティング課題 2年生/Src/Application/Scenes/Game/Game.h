@@ -45,10 +45,13 @@ private:
 	void m_BulletCntManager();
 
 	//クールタイム(次に打てるまでの時間)
-	const int m_BulletCT = 10;
+	const int m_BulletCT = 30;
 
 	//クールタイムカウンター
 	int m_BulletCnt;
+
+	//敵弾発射処理
+	void EnemyBulletAct();
 	
 	//自機 //スマートポインタのため、解放する必要がない
 	std::shared_ptr<Player> m_Player = nullptr;

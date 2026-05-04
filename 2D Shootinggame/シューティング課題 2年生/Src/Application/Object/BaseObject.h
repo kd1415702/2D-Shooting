@@ -5,7 +5,13 @@ class BaseObject
 {
 public:
 
-
+	//弾の種類
+	enum BulletColor
+	{
+		RED,	//赤
+		BLUE,	//青
+		NONE	//何もなし
+	};
 
 	BaseObject() {};
 	virtual ~BaseObject() {};
@@ -62,6 +68,8 @@ public:
 	//フラグゲッター
 	bool GetFlg() { return m_Flg; }
 
+	BulletColor GetColor() { return m_BulletColor; }
+
 	//=======================
 
 	//被弾処理(受けるダメージを正の数で入れる)
@@ -74,6 +82,8 @@ protected:
 	//virtual void Release();
 
 	ObjectType	  m_objType = ObjectType::NONE;
+
+	BulletColor   m_BulletColor = BulletColor::NONE;
 
 	//画像
 	KdTexture m_Tex;

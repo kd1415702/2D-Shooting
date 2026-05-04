@@ -4,8 +4,8 @@ class Game;
 
 enum PlayerColor
 {
-	Red,
-	Blue
+	RED,
+	BLUE
 };
 
 class Player
@@ -52,6 +52,8 @@ public:
 	//自機生存フラグゲッター
 	bool GetPlayerFlg() { return m_Flg; }
 
+	PlayerColor GetColor() { return m_PColor; }
+
 	//============================
 
 	//変数セッター============
@@ -64,7 +66,7 @@ public:
 	void SetPos(Math::Vector2 pos) { m_Pos = pos; }
 
 	//経験値セッター
-	void SetExp(int exp);
+	void SetExp(int exp) { m_PlayerExp += exp; }
 
 	//透明度セッター
 	void SetAlpha(float alpha) { m_Alpha = alpha; }

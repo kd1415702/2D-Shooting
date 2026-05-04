@@ -24,7 +24,7 @@ void Enemy::Init()
 	m_radius = m_Rect * m_Scale.x / 2.0f;
 
 	//移動量
-	m_Move = { 5.0f,0 };
+	m_Move = { 4.0f,0 };
 
 	m_Flg = true;
 
