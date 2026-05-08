@@ -5,12 +5,13 @@
 
 void Bullet::Init()
 {
+
 	m_Player = m_Player = std::make_shared<Player>();
 
 
-	m_Pos = {};
+	m_Pos = { };
 	m_Move = { 5.0f,5.0f };
-	m_Flg = false;
+	m_Flg = true;
 
 	m_Rect = 30;
 

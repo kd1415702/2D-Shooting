@@ -35,8 +35,6 @@ void Game::Init()
 		SceneManager::GetInstance().AddObject(enemy);
 	}
 
-	int a = SceneManager::GetInstance().GetObjList().size();
-	int z = 0;
 
 	
 	m_Ui = std::make_shared<Ui>();
@@ -132,6 +130,7 @@ void Game::Update()
 
 				if (v.Length() < m_Player->GetRadius())
 				{
+					obj->SetFlg(false);
 					//弾が赤の場合
 					if (obj->GetColor() == RED)
 					{
@@ -140,9 +139,6 @@ void Game::Update()
 						{
 							//経験値ゲット
 							m_Player->SetExp(10);
-							ebullet->SetFlg(false);
-
-							SceneManager::GetInstance().GetObjList().clear();
 
 						}
 						//弾と違う色なら
@@ -150,10 +146,9 @@ void Game::Update()
 						{
 							//ダメージ
 							m_Player->HitDmg();
-							ebullet->SetFlg(false);
-
-
 						}
+
+						SceneManager::GetInstance().GetObjList().clear();
 						return;
 					}
 					//弾が青の場合
@@ -164,15 +159,15 @@ void Game::Update()
 						{
 							//ダメージ
 							m_Player->HitDmg();
-							ebullet->SetFlg(false);
 						}
 						//弾と同じ色なら
 						else if (m_Player->GetColor() == BLUE)
 						{
 							//経験値ゲット
 							m_Player->SetExp(10);
-							ebullet->SetFlg(false);
 						}
+
+						SceneManager::GetInstance().GetObjList().clear();
 						return;
 					}
 				}

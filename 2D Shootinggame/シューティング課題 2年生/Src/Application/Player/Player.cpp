@@ -165,11 +165,10 @@ void Player::Update()
 
 			if (m_BulletCnt >= m_BulletCT)
 			{
+
 				std::shared_ptr<Bullet> bullet;
 				bullet = std::make_shared<Bullet>();
 
-				//球発射
-				bullet->Init();
 
 				if (m_PColor == RED)
 				{
@@ -180,11 +179,9 @@ void Player::Update()
 					bullet->SetRect(70, 0);
 				}
 
-
-				bullet->SetFlg(true);
+				bullet->Init();
 				bullet->SetPos(m_Pos);
 				m_BulletCnt = 0;
-				//bullet->SetOwner(this);
 				SceneManager::GetInstance().AddObject(bullet);
 			}
 		}

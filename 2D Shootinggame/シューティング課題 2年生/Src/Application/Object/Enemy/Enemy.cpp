@@ -27,20 +27,32 @@ void Enemy::Init()
 	//移動量
 	m_Move = { 4.0f,0 };
 
+	//生存フラグ
 	m_Flg = true;
 
 	//画像ロード
 	m_Tex.Load("Assets/Texture/Enemy/spr_spaceship_05_animation.png");
 
+	//オブジェクトタイプ
 	m_objType = ObjectType::ENEMY;
 
+	//アニメーションカウンター
 	m_AnimCnt = 0.0f;
+
+	//クールタイム
+	m_BulletCT = 20;
+
+	//カウンター
+	m_BulletCnt = 0;
 }
 
+//更新処理
 void Enemy::Update()
 {
+	//生存していれば
 	if (m_Flg == true)
 	{
+
 		m_Pos.x += m_Move.x;
 		if (m_Pos.x > 640)
 		{
@@ -51,13 +63,22 @@ void Enemy::Update()
 			m_Move.x *= -1;
 		}
 
+		//弾カウンターインクリメント
+		m_BulletCnt++;
+
+		//弾発射処理
 		std::shared_ptr<EnemyBullet> ebullet;
 		ebullet = std::make_shared<EnemyBullet>();
-
 		if (rand() % 50 == 1)
 		{
-			ebullet->Init();
-			SceneManager::GetInstance().AddObject(ebullet);
+			//クールタイムを終えていれば
+			if (m_BulletCnt >= m_BulletCT)
+			{
+				ebullet->Init();
+				ebullet->SetPos(m_Pos);
+				m_BulletCnt = 0;
+				SceneManager::GetInstance().AddObject(ebullet);
+			}
 		}
 
 

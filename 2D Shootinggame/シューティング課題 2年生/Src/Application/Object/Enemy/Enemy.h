@@ -22,6 +22,13 @@ public:
 
 private:
 
+
+	//クールタイム(次に打てるまでの時間)
+	int m_BulletCT;
+
+	//クールタイムカウンター
+	int m_BulletCnt;
+
 	void Release()override;
 
 

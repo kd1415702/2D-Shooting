@@ -1,46 +1,44 @@
 #include "EnemyBullet.h"
 #include "../../Scenes/Game/Game.h"
 #include"../../Scenes/SceneManager.h"
+#include"../Enemy/Enemy.h"
 
 //初期化
 void EnemyBullet::Init()
 {
 
 	//球発生
-	for (auto obj  : SceneManager::GetInstance().GetObjList())
+	std::shared_ptr<Enemy> enemy;
+	enemy = std::make_shared<Enemy>();
+
+	if (enemy->GetFlg())
 	{
-		if (obj->GetObjType() == ObjectType::ENEMY)
+		if (rand() % 2 == 0)
 		{
-			if (obj->GetFlg())
-			{
-				if (rand() % 2 == 0)
-				{
-					m_BulletColor = RED;
-				}
-				else
-				{
-					m_BulletColor = BLUE;
-				}
-
-				m_Pos = {obj->GetPos()};
-
-				m_Tex.Load("Assets/Texture/Enemy/Bullet/P1_Bullet_Alt2.png");
-
-				m_Rect = 26;
-
-				m_Move = { 0.0f,-3.0f };
-
-				m_Scale = { 3.0f,3.0f };
-
-				m_Flg = true;
-
-				m_radius = m_Rect * m_Scale.x / 2;
-
-				m_Alpha = 1.0f;
-
-				m_objType = ObjectType::ENEMYBULLET;
-			}
+			m_BulletColor = RED;
 		}
+		else
+		{
+			m_BulletColor = BLUE;
+		}
+
+		m_Pos = {};
+
+		m_Tex.Load("Assets/Texture/Enemy/Bullet/P1_Bullet_Alt2.png");
+
+		m_Rect = 26;
+		
+		m_Move = { 0.0f,-3.0f };
+
+		m_Scale = { 3.0f,3.0f };
+
+		m_Flg = true;
+
+		m_radius = m_Rect * m_Scale.x / 2;
+
+		m_Alpha = 1.0f;
+
+		m_objType = ObjectType::ENEMYBULLET;
 	}
 
 }
