@@ -39,6 +39,30 @@ private:
 	//切り取り範囲
 	int m_LifeRect;
 
+	//=======================
 
+	//体力(文字)==================
+	KdTexture m_HpTex;
+	Math::Matrix m_HpTransMat;
+	Math::Matrix m_HpScaleMat;
+	Math::Matrix m_HpMat;
+
+	//============================
+
+	//経験値(文字)==================
+	KdTexture m_ExpTex;
+	Math::Matrix m_ExpTransMat;
+	Math::Matrix m_ExpScaleMat;
+	Math::Matrix m_ExpMat;
+
+	//============================
+
+	//経験値(バー)==================
+	KdTexture m_ExpBarTex;
+	Math::Matrix m_ExpBarTransMat;
+	Math::Matrix m_ExpBarScaleMat;
+	Math::Matrix m_ExpBarMat;
+
+	//============================
 
 };

@@ -14,11 +14,6 @@ void Enemy::Init()
 		//透明度
 		m_Alpha = 1.0f;
 
-		//拡大率
-		m_Scale = { 3.0f,3.0f };
-
-		//半径
-		m_radius = m_Rect * m_Scale.x / 2.0f;
 
 		//移動量
 		m_Move = { 4.0f,0 };
@@ -31,16 +26,32 @@ void Enemy::Init()
 			//画像ロード
 			//赤画像
 			m_Tex.Load("Assets/Texture/Enemy/spr_spaceship_05_animation.png");
+
 			//切り取り範囲
 			m_Rect = 24;
+
+			//色
+			m_Color = RED;
+
+			//拡大率
+			m_Scale = { 3.0f,3.0f };
 		}
 		else
 		{
 			//青画像
 			m_Tex.Load("Assets/Texture/Enemy/spr_spaceship_01_animation.png");
+
 			m_Rect = 20;
+
+			m_Color = BLUE;
+
+			m_Scale = { 4.0f,3.5f };
 		}
 	
+
+
+		//半径
+		m_radius = m_Rect * m_Scale.x / 2.0f;
 
 		//オブジェクトタイプ
 		m_objType = ObjectType::ENEMY;
@@ -49,7 +60,7 @@ void Enemy::Init()
 		m_AnimCnt = 0.0f;
 
 		//クールタイム
-		m_BulletCT = 30;
+		m_BulletCT = 60;
 
 		//カウンター
 		m_BulletCnt = 0;
@@ -86,6 +97,7 @@ void Enemy::Update()
 			{
 				ebullet->Init();
 				ebullet->SetPos(m_Pos);
+				ebullet->SetColor(m_Color);
 				m_BulletCnt = 0;
 				SceneManager::GetInstance().AddObject(ebullet);
 			}

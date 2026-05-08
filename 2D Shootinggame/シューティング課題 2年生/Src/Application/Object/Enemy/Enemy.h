@@ -3,9 +3,12 @@
 #include"../BaseObject.h"
 
 
+//敵を管理するクラス
 class Enemy :public BaseObject
 {
 public:
+
+
 
 	Enemy() {};
 	~Enemy()override { Release(); }
@@ -29,8 +32,7 @@ private:
 	//クールタイムカウンター
 	int m_BulletCnt;
 
+	//リリース
 	void Release()override;
-
-
 
 };

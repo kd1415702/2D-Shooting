@@ -46,6 +46,7 @@ bool Application::Init(int w, int h)
 		bFullScreen = true;
 	}*/
 
+	ShowCursor(false);
 
 	//===================================================================
 	// Direct3D

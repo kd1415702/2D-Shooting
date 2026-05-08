@@ -13,14 +13,14 @@ void EnemyBullet::Init()
 
 	if (enemy->GetFlg())
 	{
-		if (rand() % 2 == 0)
-		{
-			m_BulletColor = RED;
-		}
-		else
-		{
-			m_BulletColor = BLUE;
-		}
+		//if (rand() % 2 == 0)
+		//{
+		//	m_BulletColor = RED;
+		//}
+		//else
+		//{
+		//	m_BulletColor = BLUE;
+		//}
 
 		m_Pos = {};
 
@@ -70,12 +70,12 @@ void EnemyBullet::Draw()
 {
 	if (m_Flg)
 	{
-		if (m_BulletColor == RED)
+		if (m_Color == RED)
 		{
 			SHADER.m_spriteShader.SetMatrix(m_Mat);
 			SHADER.m_spriteShader.DrawTex(&m_Tex, Math::Rectangle{ 0,0,m_Rect / 2,m_Rect }, m_Alpha);
 		}
-		if (m_BulletColor == BLUE)
+		if (m_Color == BLUE)
 		{
 			SHADER.m_spriteShader.SetMatrix(m_Mat);
 			SHADER.m_spriteShader.DrawTex(&m_Tex, Math::Rectangle{ 13,0,m_Rect / 2,m_Rect }, m_Alpha);

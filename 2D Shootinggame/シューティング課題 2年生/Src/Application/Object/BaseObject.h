@@ -6,7 +6,7 @@ class BaseObject
 public:
 
 	//弾の種類
-	enum BulletColor
+	enum Color
 	{
 		RED,	//赤
 		BLUE,	//青
@@ -27,7 +27,7 @@ public:
 	//変数セッター=======================
 
 	//画像セッター
-	/*void SetTex(KdTexture* tex) { m_Tex = tex; }*/
+	//void SetTex(KdTexture tex) { m_Tex = tex; }
 
 	//フラグセッター
 	virtual void SetFlg(bool flg) { m_Flg = flg; }
@@ -68,7 +68,7 @@ public:
 	//フラグゲッター
 	bool GetFlg() { return m_Flg; }
 
-	BulletColor GetColor() { return m_BulletColor; }
+	Color GetColor() { return m_Color; }
 
 	//=======================
 
@@ -83,7 +83,7 @@ protected:
 
 	ObjectType	  m_objType = ObjectType::NONE;
 
-	BulletColor   m_BulletColor = BulletColor::NONE;
+	Color   m_Color = Color::NONE;
 
 	//画像
 	KdTexture m_Tex;

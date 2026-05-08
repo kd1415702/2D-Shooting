@@ -18,12 +18,12 @@ public:
 	void Update()override;
 	void Draw()override;
 
-	void SetOwner(Game* owner) { m_Owner = owner; }
+	void SetColor(Color _color) { m_Color = _color; }
 
 
 private:
 
-	Game* m_Owner = nullptr;
+	
 
 
 

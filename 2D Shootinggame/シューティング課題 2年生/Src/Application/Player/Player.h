@@ -12,7 +12,7 @@ class Player
 public:
 
 	Player() { Init(); }
-	~Player() {};
+	~Player() {}
 
 	//初期化
 	void Init();

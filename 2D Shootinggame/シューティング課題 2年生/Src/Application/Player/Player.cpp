@@ -51,7 +51,7 @@ void Player::Init()
 	m_RectX = 128;
 
 	//切り取り場所(縦)
-	m_RectY = 64;
+	m_RectY = 50;
 
 	//現在カラー
 	m_PColor = RED;
@@ -64,6 +64,7 @@ void Player::Init()
 	
 	m_BulletCT = 30;
 	m_BulletCnt = 0;
+
 }
 
 void Player::Update()
@@ -94,30 +95,50 @@ void Player::Update()
 
 
 		//右移動
-		if (GetAsyncKeyState('D') & 0x8000)
+		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
 		{
 
-			m_Pos.x += 3.0f;
-			/*m_Move.x += m_MovePow;*/
+			m_Pos.x += m_MovePow;
+			if (m_Pos.x >= 1280 / 2 - m_Radius)
+			{
+				m_Pos.x = 1280 / 2 - m_Radius;
+			}
 
 		}
+	
 
 		//左移動
-		if (GetAsyncKeyState('A') & 0x8000)
+		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
 		{
+
 			m_Move.x -= m_MovePow;
+			if (m_Pos.x <= -1280 / 2 + m_Radius)
+			{
+				m_Pos.x = -1280 / 2 + m_Radius;
+			}
 		}
 
 		//上移動
-		if (GetAsyncKeyState('W') & 0x8000)
+		if (GetAsyncKeyState(VK_UP) & 0x8000)
 		{
+
 			m_Move.y += m_MovePow;
+			if (m_Pos.y >= 720 / 2 - m_Radius)
+			{
+				m_Pos.y = 720 / 2 - m_Radius;
+			}
+
 		}
 
 		//下移動
-		if (GetAsyncKeyState('S') & 0x8000)
+		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
 		{
 			m_Move.y -= m_MovePow;
+			if (m_Pos.y <= -530 / 2 + m_Radius)
+			{
+				m_Pos.y = -530 / 2 + m_Radius;
+			}
+
 		}
 
 
@@ -143,7 +164,7 @@ void Player::Update()
 			else if (m_PColor == BLUE)
 			{
 				m_PColor = RED;
-				m_RectY = 64;
+				m_RectY = 50;
 			}
 			m_KeyFlg = false;
 		}
@@ -200,7 +221,7 @@ void Player::Draw()
 	if (m_Flg)
 	{
 		SHADER.m_spriteShader.SetMatrix(m_Mat);
-		SHADER.m_spriteShader.DrawTex(m_Tex, Math::Rectangle{ m_RectX,m_RectY,m_Rect,m_Rect }, m_Alpha);
+		SHADER.m_spriteShader.DrawTex(m_Tex, Math::Rectangle{ m_RectX,m_RectY,m_Rect,50 }, m_Alpha);
 	}
 
 

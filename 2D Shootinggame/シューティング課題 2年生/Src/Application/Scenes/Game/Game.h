@@ -24,26 +24,23 @@ public:
 
 	void ImGuiUpdate()override;
 
-	void PreUpdate();
 
-	//全オブジェクトのリストを所得
-	std::vector<std::shared_ptr<BaseObject>> GetObjeList() { return m_ObjList; }
+	////全オブジェクトのリストを所得
+	//std::vector<std::shared_ptr<BaseObject>> GetObjeList() { return m_ObjList; }
 
 
 	//オブジェクトリストにオブジェクトを追加
-	void AddObject(std::shared_ptr<BaseObject> obj)
-	{
-		//リストの末尾に引数で渡された1要素を追加
-		m_ObjList.push_back(obj);
-	}
+	//void AddObject(std::shared_ptr<BaseObject> obj)
+	//{
+	//	//リストの末尾に引数で渡された1要素を追加
+	//	m_ObjList.push_back(obj);
+	//}
 
 private:
 
 	//全オブジェクトを可変長配列で管理
-	std::vector<std::shared_ptr<BaseObject>> m_ObjList;
-
-	////敵弾発射処理
-	//void EnemyBulletAct();
+	//std::vector<std::shared_ptr<BaseObject>> m_ObjList;
+\
 	
 	//自機 //スマートポインタのため、解放する必要がない
 	std::shared_ptr<Player> m_Player = nullptr;
@@ -54,42 +51,19 @@ private:
 	//自機画像
 	KdTexture m_PlayerTex;
 
+
 	//背景画像
 	KdTexture m_BackTex;
 
-	Math::Matrix m_BackMat;
+	//背景座標
+	static const int BackNum = 2;
+	Math::Matrix m_BackMat[BackNum];
+	float m_BackPos[BackNum];
 
+	KdTexture m_BackTex2;
+	Math::Matrix m_BackMat2;
 
-
-	//ライフ==========
-
-	////画像
-	//KdTexture m_LifeTex;
-
-	////行列
-	//Math::Matrix m_LifeTransMat;
-	//Math::Matrix m_LifeScaleMat;
-	//Math::Matrix m_LifeMat;
-
-	////座標
-	//Math::Vector2 m_LifePos;
-	////拡大率
-	//Math::Vector2 m_LifeScale;
-
-	////切り取り範囲
-	//int m_LifeRect;
-
-
-	////敵
-	//std::shared_ptr<EnemyBase> m_Enemy = nullptr;
-
-	////弾
-	//std::shared_ptr<Bullet> m_Bullet = nullptr;
-
-	/*std::vector<std::shared_ptr<EnemyBase>*/
-
-	////当たり判定
-	//std::shared_ptr<Hit> m_Hit = nullptr;
+	
 
 	//ボタンを押したかどうか
 	bool m_KeyFlg = false;
