@@ -27,7 +27,7 @@ void Game::Init()
 
 
 	//敵初期化
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		std::shared_ptr<Enemy> enemy;
 		enemy = std::make_shared<Enemy>();

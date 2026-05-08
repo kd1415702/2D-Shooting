@@ -21,6 +21,7 @@ public:
 	void Update();
 	void Draw();
 
+	void PreUpdate();
 
 	void ImGuiUpdate();
 

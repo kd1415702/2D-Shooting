@@ -6,44 +6,54 @@
 void Enemy::Init()
 {
 
+		float x = rand() % 1000 - 500 + 1;
 
-	float x = rand() % 1000 - 500 + 1;
+		//座標
+		m_Pos = { x,200.0f };
 
-	//座標
-	m_Pos = { x,200.0f };
+		//透明度
+		m_Alpha = 1.0f;
 
-	//透明度
-	m_Alpha = 1.0f;
+		//拡大率
+		m_Scale = { 3.0f,3.0f };
 
-	//切り取り範囲
-	m_Rect = 24;
+		//半径
+		m_radius = m_Rect * m_Scale.x / 2.0f;
 
-	//拡大率
-	m_Scale = { 3.0f,3.0f };
+		//移動量
+		m_Move = { 4.0f,0 };
 
-	//半径
-	m_radius = m_Rect * m_Scale.x / 2.0f;
+		//生存フラグ
+		m_Flg = true;
 
-	//移動量
-	m_Move = { 4.0f,0 };
+		if (rand() % 2 == 0)
+		{
+			//画像ロード
+			//赤画像
+			m_Tex.Load("Assets/Texture/Enemy/spr_spaceship_05_animation.png");
+			//切り取り範囲
+			m_Rect = 24;
+		}
+		else
+		{
+			//青画像
+			m_Tex.Load("Assets/Texture/Enemy/spr_spaceship_01_animation.png");
+			m_Rect = 20;
+		}
+	
 
-	//生存フラグ
-	m_Flg = true;
+		//オブジェクトタイプ
+		m_objType = ObjectType::ENEMY;
 
-	//画像ロード
-	m_Tex.Load("Assets/Texture/Enemy/spr_spaceship_05_animation.png");
+		//アニメーションカウンター
+		m_AnimCnt = 0.0f;
 
-	//オブジェクトタイプ
-	m_objType = ObjectType::ENEMY;
+		//クールタイム
+		m_BulletCT = 30;
 
-	//アニメーションカウンター
-	m_AnimCnt = 0.0f;
-
-	//クールタイム
-	m_BulletCT = 20;
-
-	//カウンター
-	m_BulletCnt = 0;
+		//カウンター
+		m_BulletCnt = 0;
+	
 }
 
 //更新処理
