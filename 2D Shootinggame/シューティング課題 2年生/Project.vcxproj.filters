@@ -73,6 +73,9 @@
     <Filter Include="Src\Application\Object\EnemyBullet">
       <UniqueIdentifier>{9e9b7445-100e-4863-9f2d-982118fdc738}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Ui">
+      <UniqueIdentifier>{3d53e587-e8ad-4bd3-ad7b-4e5a7ca8df0e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -201,6 +204,9 @@
     <ClInclude Include="Src\Application\Object\EnemyBullet\EnemyBullet.h">
       <Filter>Src\Application\Object\EnemyBullet</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Ui\Ui.h">
+      <Filter>Src\Application\Ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -298,6 +304,9 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Object\EnemyBullet\EnemyBullet.cpp">
       <Filter>Src\Application\Object\EnemyBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Ui\Ui.cpp">
+      <Filter>Src\Application\Ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,5 @@
 #pragma once
 
-class Game;
 
 enum PlayerColor
 {
@@ -96,11 +95,9 @@ public:
 	//被弾処理
 	void HitDmg();
 
-	void SetOwner(Game* owner) { m_Owner = owner; }
 
 private:
 	
-	Game* m_Owner = nullptr;
 
 	//自機画像
 	KdTexture* m_Tex;
@@ -112,7 +109,7 @@ private:
 	Math::Vector2 m_Move;
 
 	//移動量
-	float m_MovePow = 5.0f;
+	float m_MovePow;
 
 	///拡大率
 	Math::Vector2 m_Scale;
@@ -181,5 +178,15 @@ private:
 	int m_RectX;
 	int m_RectY;
 
+	//キーフラグ
+	bool m_KeyFlg;
 
+	//クールタイムマネージャー
+	void BulletCntManager();
+
+	//クールタイム(次に打てるまでの時間)
+	int m_BulletCT;
+
+	//クールタイムカウンター
+	int m_BulletCnt;
 };

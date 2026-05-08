@@ -5,6 +5,7 @@
 //前方宣言
 class Player;
 class BaseObject;
+class Ui;
 //class Hit;
 
 //ゲーム画面を管理するクラス
@@ -38,29 +39,45 @@ public:
 
 private:
 
-	//弾発射
-	void BulletAct();
+	//全オブジェクトを可変長配列で管理
+	std::vector<std::shared_ptr<BaseObject>> m_ObjList;
 
-	//クールタイムマネージャー
-	void m_BulletCntManager();
-
-	//クールタイム(次に打てるまでの時間)
-	const int m_BulletCT = 30;
-
-	//クールタイムカウンター
-	int m_BulletCnt;
-
-	//敵弾発射処理
-	void EnemyBulletAct();
+	////敵弾発射処理
+	//void EnemyBulletAct();
 	
 	//自機 //スマートポインタのため、解放する必要がない
 	std::shared_ptr<Player> m_Player = nullptr;
 
+	std::shared_ptr<Ui> m_Ui = nullptr;
+
+
 	//自機画像
 	KdTexture m_PlayerTex;
 
-	//全オブジェクトを可変長配列で管理
-	std::vector<std::shared_ptr<BaseObject>> m_ObjList;
+	//背景画像
+	KdTexture m_BackTex;
+
+	Math::Matrix m_BackMat;
+
+
+
+	//ライフ==========
+
+	////画像
+	//KdTexture m_LifeTex;
+
+	////行列
+	//Math::Matrix m_LifeTransMat;
+	//Math::Matrix m_LifeScaleMat;
+	//Math::Matrix m_LifeMat;
+
+	////座標
+	//Math::Vector2 m_LifePos;
+	////拡大率
+	//Math::Vector2 m_LifeScale;
+
+	////切り取り範囲
+	//int m_LifeRect;
 
 
 	////敵

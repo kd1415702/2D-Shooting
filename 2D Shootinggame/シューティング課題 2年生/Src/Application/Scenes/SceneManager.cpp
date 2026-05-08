@@ -1,6 +1,10 @@
 #include "SceneManager.h"
 #include "Title/Title.h"
 #include "Game/Game.h"
+#include"../Object/Enemy/Enemy.h"
+#include"../Object/Bullet/Bullet.h"
+#include"../Object/EnemyBullet/EnemyBullet.h"
+
 
 void SceneManager::Init()
 {
@@ -27,6 +31,8 @@ void SceneManager::Update()
 void SceneManager::Draw()
 {
 	m_NowScene->Draw();
+
+
 }
 
 void SceneManager::ImGuiUpdate()
@@ -51,6 +57,8 @@ void SceneManager::ChangeScene(SceneType type)
 
 		m_NowScene = std::make_shared<Game>();
 		m_NowScene->Init();
+
+
 
 
 		break;

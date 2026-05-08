@@ -1,14 +1,14 @@
 #include "EnemyBullet.h"
 #include "../../Scenes/Game/Game.h"
+#include"../../Scenes/SceneManager.h"
 
 //初期化
 void EnemyBullet::Init()
 {
 
-	//座標をEnemyの位置
-	for (auto obj : m_Owner->GetObjeList())
+	//球発生
+	for (auto obj  : SceneManager::GetInstance().GetObjList())
 	{
-
 		if (obj->GetObjType() == ObjectType::ENEMY)
 		{
 			if (obj->GetFlg())
@@ -22,7 +22,7 @@ void EnemyBullet::Init()
 					m_BulletColor = BLUE;
 				}
 
-				m_Pos = obj->GetPos();
+				m_Pos = {obj->GetPos()};
 
 				m_Tex.Load("Assets/Texture/Enemy/Bullet/P1_Bullet_Alt2.png");
 
@@ -47,32 +47,41 @@ void EnemyBullet::Init()
 
 void EnemyBullet::Update()
 {
-	m_Pos.y += m_Move.y;
-
-	if (m_Pos.y <= -360)
+	if (m_Flg == true)
 	{
-		m_Flg = false;
+
+		m_Pos.y += m_Move.y;
+
+		if (m_Pos.y <= -360)
+		{
+			m_Flg = false;
+		}
+
+
+
+
+		m_TransMat = Math::Matrix::CreateTranslation(m_Pos.x, m_Pos.y, 0);
+		m_ScaleMat = Math::Matrix::CreateScale(m_Scale.x, m_Scale.y, 0);
+		m_Mat = m_ScaleMat * m_TransMat;
 	}
 
-
-
-
-	m_TransMat = Math::Matrix::CreateTranslation(m_Pos.x, m_Pos.y, 0);
-	m_ScaleMat = Math::Matrix::CreateScale(m_Scale.x, m_Scale.y, 0);
-	m_Mat = m_ScaleMat * m_TransMat;
+	
 }
 
 void EnemyBullet::Draw()
 {
-	if (m_BulletColor == RED)
+	if (m_Flg)
 	{
-		SHADER.m_spriteShader.SetMatrix(m_Mat);
-		SHADER.m_spriteShader.DrawTex(&m_Tex, Math::Rectangle{ 0,0,m_Rect / 2,m_Rect }, m_Alpha);
-	}
-	if (m_BulletColor == BLUE)
-	{
-		SHADER.m_spriteShader.SetMatrix(m_Mat);
-		SHADER.m_spriteShader.DrawTex(&m_Tex, Math::Rectangle{ 13,0,m_Rect / 2,m_Rect }, m_Alpha);
+		if (m_BulletColor == RED)
+		{
+			SHADER.m_spriteShader.SetMatrix(m_Mat);
+			SHADER.m_spriteShader.DrawTex(&m_Tex, Math::Rectangle{ 0,0,m_Rect / 2,m_Rect }, m_Alpha);
+		}
+		if (m_BulletColor == BLUE)
+		{
+			SHADER.m_spriteShader.SetMatrix(m_Mat);
+			SHADER.m_spriteShader.DrawTex(&m_Tex, Math::Rectangle{ 13,0,m_Rect / 2,m_Rect }, m_Alpha);
+		}
 	}
 }
 

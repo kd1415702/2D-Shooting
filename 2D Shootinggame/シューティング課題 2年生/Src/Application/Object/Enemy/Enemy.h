@@ -2,6 +2,7 @@
 //親クラスのインクルード
 #include"../BaseObject.h"
 
+
 class Enemy :public BaseObject
 {
 public:
@@ -17,11 +18,11 @@ public:
 
 	void Hit()override;
 
+
+
 private:
 
 	void Release()override;
-
-
 
 
 

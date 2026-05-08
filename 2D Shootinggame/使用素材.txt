@@ -1,2 +1,12 @@
-自機画像
-https://mattwalkden.itch.io/lunar-battle-pack
+自機画像・自機弾画像・背景
+https://timberlate007.itch.io/shootem-up
+
+敵画像
+https://skyel13.itch.io/skyel-simple-space-shooter
+
+敵弾画像
+https://jinvorionstg.itch.io/bullet-asset-pack-top-down-or-shmup-classic-bullet-hell-style
+
+UI画像
+https://axiale.itch.io/2d-heart-assets(ハート)
+https://wenrexa.itch.io/icons2(電気)

@@ -6,6 +6,7 @@
 //前方宣言(SceneManagerで使う各シーン)
 class Title;
 class Game;
+class BaseObject;
 
 
 //各シーンの実態を管理するクラス
@@ -27,9 +28,18 @@ public:
 	//シーン切り替え関数
 	void ChangeScene(SceneType type);
 
+	//オブジェクト追加
+	void AddObject(std::shared_ptr<BaseObject> _obj)
+	{
+		m_ObjList.push_back(_obj);
+	}
 
+	std::vector<std::shared_ptr<BaseObject>> GetObjList() {	return m_ObjList;}
 
 private:
+
+	//全オブジェクトを可変長配列で管理
+	std::vector<std::shared_ptr<BaseObject>> m_ObjList;
 
 	//現在のシーンを持たせる(SceneBaseを継承した子クラスのアドレスが入る)
 	std::shared_ptr<SceneBase> m_NowScene;
