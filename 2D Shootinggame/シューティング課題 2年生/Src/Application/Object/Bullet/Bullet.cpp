@@ -2,6 +2,7 @@
 #include "../../Scenes/Game/Game.h"
 #include"../../Player/Player.h"
 #include"../../Scenes/SceneManager.h"
+#include"../Enemy/Enemy.h"
 
 void Bullet::Init()
 {
@@ -9,8 +10,10 @@ void Bullet::Init()
 	m_Player = m_Player = std::make_shared<Player>();
 
 
-	m_Pos = { };
-	m_Move = { 5.0f,5.0f };
+	/*m_Pos = { };*/
+
+	//m_Move = { 0.0f,5.0f };
+
 	m_Flg = true;
 
 	m_Rect = 30;
@@ -23,6 +26,10 @@ void Bullet::Init()
 
 	m_Tex.Load("Assets/Texture/Bullet/Bullets-0001.png");
 
+	m_TransMat = Math::Matrix::CreateTranslation(m_Pos.x, m_Pos.y, 0);
+	m_ScaleMat = Math::Matrix::CreateScale(0, 0, 0);
+	m_Mat = m_ScaleMat * m_TransMat;
+
 }
 
 void Bullet::Update()
@@ -31,7 +38,7 @@ void Bullet::Update()
 	{
 		m_Pos.y += m_Move.y;
 
-		if (m_Pos.y > 360)
+		if (m_Pos.y > 360 || m_Pos.x < -640 || m_Pos.x > 640)
 		{
 			m_Flg = false;
 		}
@@ -49,21 +56,40 @@ void Bullet::Update()
 					Math::Vector2 v;
 					v = obj->GetPos() - m_Pos;
 
-					if (v.Length() < m_radius)
+					if (v.Length() < m_radius + obj->GetRadius())
 					{
 						m_Flg = false;
-						obj->Hit();
+						obj->HitDmg(10);
 
 					}
 				}
 			}
 		}
 
-	}
+		//ボスエネミーとの当たり判定
+		for (auto obj : SceneManager::GetInstance().GetObjList())
+		{
+			if (obj->GetObjType() == ObjectType::BOSSENEMY)
+			{
+				if (obj->GetFlg() == true)
+				{
+					Math::Vector2 v;
+					v = obj->GetPos() - m_Pos;
+					if (v.Length() < m_radius + obj->GetRadius())
+					{
+						m_Flg = false;
+						obj->HitDmg(10);
+					}
+				}
+			}
+		}
 
+
+	}
 	m_TransMat = Math::Matrix::CreateTranslation(m_Pos.x, m_Pos.y, 0);
 	m_ScaleMat = Math::Matrix::CreateScale(m_Scale.x, m_Scale.y, 0);
 	m_Mat = m_ScaleMat * m_TransMat;
+
 }
 
 void Bullet::Draw()
@@ -74,6 +100,7 @@ void Bullet::Draw()
 		SHADER.m_spriteShader.DrawTex(&m_Tex, Math::Rectangle{ m_RectX,m_RectY,m_Rect,m_Rect }, 1.0f);
 	}
 }
+
 
 
 void Bullet::Release()

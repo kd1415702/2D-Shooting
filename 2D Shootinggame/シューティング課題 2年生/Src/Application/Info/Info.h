@@ -15,7 +15,9 @@ enum class ObjectType
 	NONE,			//タイプ無し
 	ENEMY,			//エネミー
 	BULLET,			//自機の弾
+	BOSSENEMY,		//ボスエネミー
 	ENEMYBULLET,	//敵の球
+	BOSSENEMYBULLET //ボスエネミーの弾
 };
 
 

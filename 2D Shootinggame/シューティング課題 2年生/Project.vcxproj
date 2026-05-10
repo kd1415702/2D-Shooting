@@ -162,6 +162,11 @@
     <ClInclude Include="Src\Application\Hit\Hit.h" />
     <ClInclude Include="Src\Application\Info\Info.h" />
     <ClInclude Include="Src\Application\Object\BaseObject.h" />
+    <ClInclude Include="Src\Application\Object\BossEnemyBullet\BossEnemyBullet.h" />
+    <ClInclude Include="Src\Application\Object\BossEnemy\BossEnemy.h" />
+    <ClInclude Include="Src\Application\Object\Bullet2\Bullet2.h" />
+    <ClInclude Include="Src\Application\Object\Bullet3\Bullet3.h" />
+    <ClInclude Include="Src\Application\Object\Bullet4\Bullet4.h" />
     <ClInclude Include="Src\Application\Object\Bullet\Bullet.h" />
     <ClInclude Include="Src\Application\Object\EnemyBullet\EnemyBullet.h" />
     <ClInclude Include="Src\Application\Object\Enemy\Enemy.h" />
@@ -199,6 +204,11 @@
     <ClCompile Include="Src\Application\Hit\Hit.cpp" />
     <ClCompile Include="Src\Application\Info\Info.cpp" />
     <ClCompile Include="Src\Application\Object\BaseObject.cpp" />
+    <ClCompile Include="Src\Application\Object\BossEnemyBullet\BossEnemyBullet.cpp" />
+    <ClCompile Include="Src\Application\Object\BossEnemy\BossEnemy.cpp" />
+    <ClCompile Include="Src\Application\Object\Bullet2\Bullet2.cpp" />
+    <ClCompile Include="Src\Application\Object\Bullet3\Bullet3.cpp" />
+    <ClCompile Include="Src\Application\Object\Bullet4\Bullet4.cpp" />
     <ClCompile Include="Src\Application\Object\Bullet\Bullet.cpp" />
     <ClCompile Include="Src\Application\Object\EnemyBullet\EnemyBullet.cpp" />
     <ClCompile Include="Src\Application\Object\Enemy\Enemy.cpp" />

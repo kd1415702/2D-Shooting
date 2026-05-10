@@ -45,6 +45,8 @@ private:
 	//タイトル描画
 	void DrawTitle();
 
+	KdTexture m_TitleTex;
+	Math::Matrix m_TitleMat;
 	
 
 	//タイトル管理変数

@@ -27,7 +27,7 @@ void EnemyBullet::Init()
 		m_Tex.Load("Assets/Texture/Enemy/Bullet/P1_Bullet_Alt2.png");
 
 		m_Rect = 26;
-		
+
 		m_Move = { 0.0f,-3.0f };
 
 		m_Scale = { 3.0f,3.0f };
@@ -39,8 +39,8 @@ void EnemyBullet::Init()
 		m_Alpha = 1.0f;
 
 		m_objType = ObjectType::ENEMYBULLET;
-	}
 
+	}
 }
 
 void EnemyBullet::Update()
@@ -82,6 +82,7 @@ void EnemyBullet::Draw()
 		}
 	}
 }
+
 
 void EnemyBullet::Release()
 {

@@ -1,6 +1,8 @@
 #pragma once
 #include"../Info/Info.h"
 
+class Player;
+
 class BaseObject
 {
 public:
@@ -24,6 +26,8 @@ public:
 
 	virtual void ImGuiUpdate();
 
+	virtual void HitDmg(int _dmg);
+
 	//変数セッター=======================
 
 	//画像セッター
@@ -34,6 +38,9 @@ public:
 
 	//座標セッター
 	void SetPos(Math::Vector2 pos) { m_Pos = pos; }
+
+	//移動量セッター
+	void SetMove(Math::Vector2 move) { m_Move = move; }
 
 	//速度セッター
 	void SetSpeed(float speed) { m_MovePow = speed; }
@@ -70,16 +77,17 @@ public:
 
 	Color GetColor() { return m_Color; }
 
+	//ボス用
+	Math::Vector2 GetBulletPos(int num) { return m_BulletPos[num]; }
+	bool GetBulletFlg(int num) { return m_BulletFlg[num]; }
+	Color GetBulletColor(int num) { return m_BulletColor[num]; }
+	static const int GetBulletNum() { return m_BulletNum; }
 	//=======================
 
-	//被弾処理(受けるダメージを正の数で入れる)
-	void HitDmg(int dmg);
-
-	virtual void Hit();
+	
 
 protected:
 
-	//virtual void Release();
 
 	ObjectType	  m_objType = ObjectType::NONE;
 
@@ -131,5 +139,11 @@ protected:
 
 	//透明度
 	float m_Alpha;
+
+
+	static const int m_BulletNum = 10;
+	Math::Vector2 m_BulletPos[m_BulletNum];
+	bool m_BulletFlg[m_BulletNum];
+	Color m_BulletColor[m_BulletNum];
 
 };

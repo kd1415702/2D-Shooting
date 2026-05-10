@@ -76,6 +76,21 @@
     <Filter Include="Src\Application\Ui">
       <UniqueIdentifier>{3d53e587-e8ad-4bd3-ad7b-4e5a7ca8df0e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Object\Bullet2">
+      <UniqueIdentifier>{e9ff2626-da3c-49cb-b45f-25e3aa11f405}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Object\Bullet3">
+      <UniqueIdentifier>{fca7bd23-5a3e-41d2-9c09-bf0ba6d335f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Object\Bullet4">
+      <UniqueIdentifier>{513c054f-68fc-4f5f-9c9e-7bf682b86eef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Object\BossEnemy">
+      <UniqueIdentifier>{4769530b-0e9a-4ba3-9107-cabfadbcfdfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Object\BossEnemyBullet">
+      <UniqueIdentifier>{ec4fa184-6e9f-4b1e-863d-b3c0e7926807}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -207,6 +222,21 @@
     <ClInclude Include="Src\Application\Ui\Ui.h">
       <Filter>Src\Application\Ui</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Object\Bullet2\Bullet2.h">
+      <Filter>Src\Application\Object\Bullet2</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Object\Bullet3\Bullet3.h">
+      <Filter>Src\Application\Object\Bullet3</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Object\Bullet4\Bullet4.h">
+      <Filter>Src\Application\Object\Bullet4</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Object\BossEnemy\BossEnemy.h">
+      <Filter>Src\Application\Object\BossEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Object\BossEnemyBullet\BossEnemyBullet.h">
+      <Filter>Src\Application\Object\BossEnemyBullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -307,6 +337,21 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Ui\Ui.cpp">
       <Filter>Src\Application\Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Object\Bullet2\Bullet2.cpp">
+      <Filter>Src\Application\Object\Bullet2</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Object\Bullet3\Bullet3.cpp">
+      <Filter>Src\Application\Object\Bullet3</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Object\Bullet4\Bullet4.cpp">
+      <Filter>Src\Application\Object\Bullet4</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Object\BossEnemy\BossEnemy.cpp">
+      <Filter>Src\Application\Object\BossEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Object\BossEnemyBullet\BossEnemyBullet.cpp">
+      <Filter>Src\Application\Object\BossEnemyBullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

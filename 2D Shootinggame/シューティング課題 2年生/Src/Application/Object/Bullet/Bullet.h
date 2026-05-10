@@ -25,6 +25,10 @@ public:
 	void SetFlg(bool flg)override { m_Flg = flg; }
 
 	void SetRect(int x, int y) { m_RectX = x, m_RectY = y; }
+
+	void SetMove(Math::Vector2 _move) { m_Move = _move; }
+	
+
 private:
 
 	void Release();

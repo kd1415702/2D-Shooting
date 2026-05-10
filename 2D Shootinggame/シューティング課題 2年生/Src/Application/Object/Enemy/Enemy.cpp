@@ -1,22 +1,24 @@
 #include "Enemy.h"
 #include "../EnemyBullet/EnemyBullet.h"
 #include"../../Scenes/SceneManager.h"
+#include"../../Scenes/Game/Game.h"
+#include"../../Player/Player.h"
 
 //初期化
 void Enemy::Init()
 {
 
-		float x = rand() % 1000 - 500 + 1;
+		//float x = rand() % 1000 - 500 + 1;
 
-		//座標
-		m_Pos = { x,200.0f };
+		////座標
+		//m_Pos = { x,200.0f };
 
 		//透明度
 		m_Alpha = 1.0f;
 
 
 		//移動量
-		m_Move = { 4.0f,0 };
+		//m_Move = { 4.0f,0 };
 
 		//生存フラグ
 		m_Flg = true;
@@ -60,11 +62,16 @@ void Enemy::Init()
 		m_AnimCnt = 0.0f;
 
 		//クールタイム
-		m_BulletCT = 60;
+		m_BulletCT = 30;
 
 		//カウンター
 		m_BulletCnt = 0;
 	
+		//最大HP
+		m_MaxHp = 50;
+		
+		//現在HP
+		m_Hp = m_MaxHp;
 }
 
 //更新処理
@@ -74,15 +81,12 @@ void Enemy::Update()
 	if (m_Flg == true)
 	{
 
-		m_Pos.x += m_Move.x;
-		if (m_Pos.x > 640)
-		{
-			m_Move.x *= -1;
-		}
-		else if (m_Pos.x < -640)
-		{
-			m_Move.x *= -1;
-		}
+		m_Pos += m_Move;
+		//if (m_Pos.y > 360 || m_Pos.y < -360 || m_Pos.x < -640 || m_Pos.x > 640)
+		//{
+		//	m_Flg = false;
+
+		//}
 
 		//弾カウンターインクリメント
 		m_BulletCnt++;
@@ -90,7 +94,7 @@ void Enemy::Update()
 		//弾発射処理
 		std::shared_ptr<EnemyBullet> ebullet;
 		ebullet = std::make_shared<EnemyBullet>();
-		if (rand() % 50 == 1)
+		if (rand() % 30 == 1)
 		{
 			//クールタイムを終えていれば
 			if (m_BulletCnt >= m_BulletCT)
@@ -130,14 +134,26 @@ void Enemy::Draw()
 
 void Enemy::ImGuiUpdate()
 {
-	ImGui::Text(u8"EnemyPos : %f", m_Pos.x);
 	ImGui::Text(u8"EnemyFlg : %d", m_Flg);
+	ImGui::Text(u8"EnemyLife : %d", m_Hp);
 }
 
-void Enemy::Hit()
+void Enemy::HitDmg(int _dmg)
 {
-	m_Flg = false;
+
+	m_Hp -= _dmg;
+	if (m_Hp <= 0)
+	{
+		m_Flg = false;
+
+		//経験値ゲット
+		//Player::GetInstance().SetExp(50);
+
+		int a = 0;
+	}
+
 }
+
 
 void Enemy::Release()
 {

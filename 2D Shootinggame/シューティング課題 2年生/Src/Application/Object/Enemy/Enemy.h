@@ -19,9 +19,9 @@ public:
 
 	void ImGuiUpdate()override;
 
-	void Hit()override;
+	void HitDmg(int _dmg)override;
 
-
+	void SetBulletCT(int _ct) { m_BulletCT = _ct; }
 
 private:
 

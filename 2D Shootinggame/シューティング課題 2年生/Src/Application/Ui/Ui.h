@@ -16,6 +16,11 @@ public:
 	void SetPos(Math::Vector2 _pos) { m_LifePos = _pos; }
 	void SetRect(int _rect) { m_LifeRect = _rect; }
 
+	void SetExp(int _exp) { m_Exp = _exp; }
+	void SetLv(int _lv) { m_Lv = _lv; }
+
+	void NumDraw(int _num);
+
 private:
 
 	//プレイヤーインスタンス
@@ -49,7 +54,7 @@ private:
 
 	//============================
 
-	//経験値(文字)==================
+	//レベル(文字)==================
 	KdTexture m_ExpTex;
 	Math::Matrix m_ExpTransMat;
 	Math::Matrix m_ExpScaleMat;
@@ -57,12 +62,37 @@ private:
 
 	//============================
 
+	//現在レベル(数字)==================
+	KdTexture m_LvNumTex;
+	Math::Matrix m_LvNumTransMat;
+	Math::Matrix m_LvNumScaleMat;
+	Math::Matrix m_LvNumMat;
+
+	int m_Lv;
+	//============================
+
+	//経験値(フレーム)==================
+	KdTexture m_ExpFrameTex;
+	Math::Matrix m_ExpFrameTransMat;
+	Math::Matrix m_ExpFrameScaleMat;
+	Math::Matrix m_ExpFrameMat;
+
+	//============================
+
 	//経験値(バー)==================
+	int m_Exp;
+
 	KdTexture m_ExpBarTex;
 	Math::Matrix m_ExpBarTransMat;
 	Math::Matrix m_ExpBarScaleMat;
 	Math::Matrix m_ExpBarMat;
 
+	float m_ExpBarPos;
+
+	int m_ExpBarRect;
+
 	//============================
 
+	KdTexture m_BlackTex;
+	Math::Matrix m_BlackTransMat;
 };

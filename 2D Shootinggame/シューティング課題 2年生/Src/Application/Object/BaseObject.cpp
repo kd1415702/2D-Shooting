@@ -1,4 +1,5 @@
 #include "BaseObject.h"
+#include"../Player/Player.h"
 
 void BaseObject::Init()
 {
@@ -25,5 +26,10 @@ void BaseObject::ImGuiUpdate()
 
 }
 
-void BaseObject::Hit()
-{}
+void BaseObject::HitDmg(int _dmg)
+{
+	
+}
+
+
+

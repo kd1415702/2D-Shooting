@@ -5,6 +5,12 @@
 //初期化
 Title::Title()
 {
+	m_BackTex.Load("Assets/Texture/Back/Background_SmallStars-0001.png");
+	m_BackMat = Math::Matrix::CreateTranslation(0, 0, 0);
+
+	m_TitleTex.Load("Assets/Texture/UI/Title/Title_transparent.png");
+	m_TitleMat = Math::Matrix::CreateScale(3.0f, 3.0f, 0) * Math::Matrix::CreateTranslation(0, 150.0f, 0);
+
 	//Press Enter
 	m_PETex.Load("Assets/Texture/UI/Title/Press Enter.png");
 	//Press Enterの初期位置,上限、下限移動値
@@ -120,6 +126,12 @@ void Title::UpdateTitle()
 
 void Title::DrawTitle()
 {
+	SHADER.m_spriteShader.SetMatrix(m_BackMat);
+	SHADER.m_spriteShader.DrawTex(&m_BackTex, Math::Rectangle{ 0,0,1280,720 }, 1.0f);
+
+	SHADER.m_spriteShader.SetMatrix(m_TitleMat);
+	SHADER.m_spriteShader.DrawTex(&m_TitleTex, Math::Rectangle{ 0,0,300,100 }, 1.0f);
+
 	switch (m_NowTitle)
 	{
 	case FirstTitle:

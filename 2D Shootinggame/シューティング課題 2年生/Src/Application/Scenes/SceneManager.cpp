@@ -75,8 +75,9 @@ void SceneManager::ChangeScene(SceneType type)
 	}
 	case GAME:
 	{
-
+		
 		m_NowScene = std::make_shared<Game>();
+		m_ObjList.clear();
 		m_NowScene->Init();
 
 

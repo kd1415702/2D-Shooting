@@ -8,14 +8,14 @@ class Hit
 {
 public :
 
-	Hit() {};
+	//Hit() {};
 
 	//初期化
-	void Init();
+	/*void Init();*/
 
 	//敵とプレイヤーの当たり判定
 	//敵のインスタンスをアドレスで持って来る(複数の敵を判別するため)
-	void EnemyPlayerHit();
+	/*void EnemyPlayerHit();*/
 
 	//フラグゲッター
 	bool GetFlg() { return m_Flg; }

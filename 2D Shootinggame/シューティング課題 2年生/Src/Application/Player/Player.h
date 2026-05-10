@@ -12,7 +12,7 @@ class Player
 public:
 
 	Player() { Init(); }
-	~Player() {}
+	~Player() { m_PlusLvTex.Release(); m_PlusBulletTex.Release(); }
 
 	//初期化
 	void Init();
@@ -51,7 +51,14 @@ public:
 	//自機生存フラグゲッター
 	bool GetPlayerFlg() { return m_Flg; }
 
+	//現在経験値ゲッター
+	int GetExp() { return m_PlayerExp; }
+
+	//現在カラーゲッター
 	PlayerColor GetColor() { return m_PColor; }
+
+	//弾吸収範囲ゲッター
+	float GetBulletAbsorbRange() { return m_BulletAbsorbRange; }
 
 	//============================
 
@@ -96,8 +103,20 @@ public:
 	void HitDmg();
 
 
+
 private:
 	
+	//レベル1～9までの弾発射処理
+	void Lv1BulletAct();
+
+	//レベル10～19の弾発射処理
+	void Lv2BulletAct();
+
+	//レベル20～30の弾発射処理
+	void Lv3BulletAct();
+
+	//レベル30～の弾発射処理
+	void Lv4BulletAct();
 
 	//自機画像
 	KdTexture* m_Tex;
@@ -150,10 +169,10 @@ private:
 	int m_PlayerGetExp;
 
 	//現在のレベル
-	int m_PlayerLv;
+	int m_PlayerLv = 1;
 
 	//次のレベルまでに必要な経験値量
-	int m_PlayerNextLvExp;
+	int m_PlayerNextLvExp = 100;
 
 	//現在の色
 	PlayerColor m_PColor;
@@ -181,6 +200,9 @@ private:
 	//キーフラグ
 	bool m_KeyFlg;
 
+	//デバッグ用レベルアップ
+	bool m_LvUpFlg = false;
+
 	//クールタイムマネージャー
 	void BulletCntManager();
 
@@ -189,4 +211,64 @@ private:
 
 	//クールタイムカウンター
 	int m_BulletCnt;
+
+
+	//レベルアップ時の変数
+
+	//弾の速度
+	float m_BulletMove;
+
+	//敵の弾の吸収範囲
+	float m_BulletAbsorbRange;
+
+	//レベルアップ時======
+	KdTexture m_PlusLvTex;
+
+	Math::Vector2 m_PlusLvPos;
+
+	float m_PlusLvAlpha;
+	float m_PlusLvCnt;
+
+	Math::Matrix m_PlusLvTransMat;
+	Math::Matrix m_PlusLvScaleMat;
+	Math::Matrix m_PlusLvMat;
+
+
+	//弾のレベルアップ時======
+	KdTexture m_PlusBulletTex;
+
+	Math::Vector2 m_PlusBulletPos;
+
+	float m_PlusBulletAlpha;
+	float m_PlusBulletCnt;
+
+	Math::Matrix m_PlusBulletTransMat;
+	Math::Matrix m_PlusBulletScaleMat;
+	Math::Matrix m_PlusBulletMat;
+
+
+	//色変更時
+	KdTexture m_ColorChangeTex;
+
+	bool m_CCFlg;
+
+	float m_CCScale;
+	float m_CCAlpha;
+
+	int m_CCRect;
+	int m_CCRectX;
+	int m_CCRectY;
+
+	Math::Matrix m_CCTransMat;
+	Math::Matrix m_CCScaleMat;
+	Math::Matrix m_CCMat;
+
+
+public:
+	static Player& GetInstance()
+	{
+		static Player instance;
+		return instance;
+	}
+
 };
