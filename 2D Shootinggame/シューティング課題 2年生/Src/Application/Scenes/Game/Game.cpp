@@ -25,7 +25,7 @@ void Game::Init()
 
 	//自機初期化
 	m_Player->Init();
-	m_PlayerTex.Load("Assets/Texture/Player/SpaceShips_Player-0001_2.png");
+	m_PlayerTex.Load("Assets/Texture/Player/PlayerBlue.png");
 	m_Player->SetTex(&m_PlayerTex);
 
 
@@ -49,6 +49,8 @@ void Game::Init()
 	m_BackTex.Load("Assets/Texture/Back/Background_SmallStars-0001.png");
 	m_BackPos[0] = 0.0f;
 	m_BackPos[1] = 720.0f;
+
+	
 
 	m_BackTex2.Load("Assets/Texture/Back/Black.png");
 	m_BackMat2 = Math::Matrix::CreateTranslation(0, -310.0f, 0);
@@ -271,6 +273,13 @@ void Game::Update()
 		{
 			m_KeyFlg = false;
 		}
+
+		if (GetAsyncKeyState('5') & 0x8000)
+		{
+			m_Wave = WAVE5;
+		}
+
+
 }
 
 

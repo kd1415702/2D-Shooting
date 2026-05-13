@@ -333,7 +333,7 @@ void Player::Draw()
 	{
 		//自機
 		SHADER.m_spriteShader.SetMatrix(m_Mat);
-		SHADER.m_spriteShader.DrawTex(m_Tex, Math::Rectangle{ m_RectX,m_RectY,m_Rect,50 }, m_Alpha);
+		SHADER.m_spriteShader.DrawTex(m_Tex, Math::Rectangle{ m_RectX,m_RectY,m_Rect,43 }, m_Alpha);
 
 		if (m_CCFlg == true)
 		{
