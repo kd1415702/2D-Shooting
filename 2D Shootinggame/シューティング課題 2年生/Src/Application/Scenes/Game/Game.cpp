@@ -25,8 +25,10 @@ void Game::Init()
 
 	//自機初期化
 	m_Player->Init();
-	m_PlayerTex.Load("Assets/Texture/Player/PlayerBlue.png");
+	m_PlayerTex.Load("Assets/Texture/Player/PlayerRed.png");
 	m_Player->SetTex(&m_PlayerTex);
+	m_PlayerTex2.Load("Assets/Texture/Player/PlayerBlue.png");
+	m_Player->SetTex2(&m_PlayerTex2);
 
 
 
@@ -327,6 +329,7 @@ void Game::Draw()
 void Game::Release()
 {
 	m_PlayerTex.Release();
+	m_PlayerTex2.Release();
 	m_BackTex.Release();
 
 	SceneManager::GetInstance().GetObjList().clear();

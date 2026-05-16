@@ -45,6 +45,8 @@ public:
 	//速度セッター
 	void SetSpeed(float speed) { m_MovePow = speed; }
 
+	void SetColor(Color _color) { m_Color = _color; }
+
 	//================================--
 
 	//変数ゲッター===================

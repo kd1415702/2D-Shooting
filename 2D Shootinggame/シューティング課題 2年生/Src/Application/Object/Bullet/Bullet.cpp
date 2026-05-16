@@ -16,7 +16,7 @@ void Bullet::Init()
 
 	m_Flg = true;
 
-	m_Rect = 30;
+	m_Rect = 10;
 
 	m_Scale = { 2.0f,2.0f };
 
@@ -24,7 +24,7 @@ void Bullet::Init()
 
 	m_objType = ObjectType::BULLET;
 
-	m_Tex.Load("Assets/Texture/Bullet/Bullets-0001.png");
+	m_Tex.Load("Assets/Texture/Bullet/FoxShotSheet.png");
 
 	m_TransMat = Math::Matrix::CreateTranslation(m_Pos.x, m_Pos.y, 0);
 	m_ScaleMat = Math::Matrix::CreateScale(0, 0, 0);
@@ -36,7 +36,7 @@ void Bullet::Update()
 {
 	if (m_Flg == true)
 	{
-		m_Pos.y += m_Move.y;
+		m_Pos += m_Move;
 
 		if (m_Pos.y > 360 || m_Pos.x < -640 || m_Pos.x > 640)
 		{

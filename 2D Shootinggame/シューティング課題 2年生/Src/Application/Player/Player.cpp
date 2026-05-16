@@ -18,13 +18,13 @@ void Player::Init()
 	m_MovePow = 5.0f;
 
 	//拡大率
-	m_Scale = { 1.5f,2.0f };
+	m_Scale = { 0.09f,0.09f };
 
 	//生存フラグ
 	m_Flg = true;
 
 	//切り取り範囲
-	m_Rect = 64;
+	m_Rect = 1536;
 
 	//半径
 	m_Radius = m_Rect * m_Scale.x / 2.0f;
@@ -66,7 +66,7 @@ void Player::Init()
 	m_KeyFlg = false;
 	
 	//クールタイム
-	m_BulletCT = 30;
+	m_BulletCT = 10;
 
 	//クールタイムカウンター
 	m_BulletCnt = 0;
@@ -97,6 +97,9 @@ void Player::Init()
 	m_CCFlg = false;
 	m_CCAlpha = 1.0f;
 
+	m_TransMat = Math::Matrix::CreateTranslation(m_Pos.x, m_Pos.y, 0);
+	m_ScaleMat = Math::Matrix::CreateScale(0, 0, 0);
+	m_Mat = m_ScaleMat * m_TransMat;
 
 }
 
@@ -332,8 +335,18 @@ void Player::Draw()
 	if (m_Flg)
 	{
 		//自機
-		SHADER.m_spriteShader.SetMatrix(m_Mat);
-		SHADER.m_spriteShader.DrawTex(m_Tex, Math::Rectangle{ m_RectX,m_RectY,m_Rect,43 }, m_Alpha);
+
+		if (m_PColor == RED)
+		{
+			SHADER.m_spriteShader.SetMatrix(m_Mat);
+			SHADER.m_spriteShader.DrawTex(m_Tex, Math::Rectangle{ 0,0,m_Rect,1024 }, m_Alpha);
+		}
+		else if (m_PColor == BLUE)
+		{
+			SHADER.m_spriteShader.SetMatrix(m_Mat);
+			SHADER.m_spriteShader.DrawTex(m_Tex2, Math::Rectangle{ 0,0,m_Rect,1024 }, m_Alpha);
+		}
+
 
 		if (m_CCFlg == true)
 		{
@@ -492,6 +505,7 @@ void Player::BulletCntManager()
 	m_BulletCnt++;
 }
 
+//初期弾幕攻撃
 void Player::Lv1BulletAct()
 {
 	std::shared_ptr<Bullet> bullet;
@@ -499,7 +513,7 @@ void Player::Lv1BulletAct()
 
 	if (m_PColor == RED)
 	{
-		bullet->SetRect(70, 80);
+		bullet->SetRect(0, 0);
 	}
 	if (m_PColor == BLUE)
 	{
@@ -508,7 +522,7 @@ void Player::Lv1BulletAct()
 
 	bullet->Init();
 	bullet->SetPos(m_Pos);
-	bullet->SetMove({ 0.0f, m_BulletMove });
+	bullet->SetMove({ 10.0f, 0.0f });
 	m_BulletCnt = 0;
 	SceneManager::GetInstance().AddObject(bullet);
 }

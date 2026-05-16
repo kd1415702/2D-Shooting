@@ -18,6 +18,10 @@
 
 	 m_LifeScale = { 1.0f,1.0f };
 	 m_LifeRect = 64 * 3;
+
+	 m_LifeTransMat = Math::Matrix::CreateTranslation(m_LifePos.x, m_LifePos.y, 0);
+	 m_LifeScaleMat = Math::Matrix::CreateScale(0, 0, 0);
+	 m_LifeMat = m_LifeScaleMat * m_LifeTransMat;
 	 //=================================
 
 	 //体力(文字)=========================

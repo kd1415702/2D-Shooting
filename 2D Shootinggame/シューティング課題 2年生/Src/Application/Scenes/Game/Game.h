@@ -79,6 +79,9 @@ private:
 	//自機画像
 	KdTexture m_PlayerTex;
 
+	//自機画像2
+	KdTexture m_PlayerTex2;
+
 
 	//背景画像
 	KdTexture m_BackTex;

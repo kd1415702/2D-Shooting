@@ -68,6 +68,9 @@ public:
 	//画像セッター
 	void SetTex(KdTexture* tex) { m_Tex = tex; }
 
+	//画像セッター2
+	void SetTex2(KdTexture* tex) { m_Tex2 = tex; }
+
 	//座標セッター
 	void SetPos(Math::Vector2 pos) { m_Pos = pos; }
 
@@ -120,6 +123,9 @@ private:
 
 	//自機画像
 	KdTexture* m_Tex;
+
+	//自機画像2
+	KdTexture* m_Tex2;
 
 	//座標
 	Math::Vector2 m_Pos;
